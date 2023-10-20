@@ -1,4 +1,3 @@
-import Header from '../../components/header/header.tsx';
 import Locations from '../../components/locations/locations.tsx';
 import CitiesPlaces from '../../components/places/cities-places/cities-places.tsx';
 
@@ -9,8 +8,6 @@ type MainProps = {
 function Main({countOffers}: MainProps) {
   return (
     <div className="page page--gray page--main">
-      <Header/>
-
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

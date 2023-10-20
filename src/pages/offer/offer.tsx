@@ -1,5 +1,4 @@
 import {ReactElement} from 'react';
-import Header from '../../components/header/header.tsx';
 import OfferGallery from '../../components/offer/offer-gallery/offer-gallery.tsx';
 import OfferFeatures from '../../components/offer/offer-features/offer-features.tsx';
 import OfferInside from '../../components/offer/offer-inside/offer-inside.tsx';
@@ -10,8 +9,6 @@ import NearPlaces from '../../components/near-places/near-places/near-places.tsx
 function Offer():ReactElement {
   return (
     <div className="page">
-      <Header/>
-
       <main className="page__main page__main--offer">
         <section className="offer">
           <OfferGallery/>
