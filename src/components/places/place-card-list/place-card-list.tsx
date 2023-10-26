@@ -7,7 +7,7 @@ type PlaceCardListProps = {
 }
 
 function PlaceCardList({offers}: PlaceCardListProps) {
-  const [activePlaceCardId, setActivePlaceCardId] = useState<undefined|number>(undefined);
+  const [, setActivePlaceCardId] = useState<undefined|number>(undefined);
 
   const mouseOverHandler = (offerId: number) => {
     setActivePlaceCardId(offerId);

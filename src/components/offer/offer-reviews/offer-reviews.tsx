@@ -1,5 +1,5 @@
 import {ReactElement} from 'react';
-import OfferReviewForm from "../offer-review-form/offer-review-form.tsx";
+import OfferReviewForm from '../offer-review-form/offer-review-form.tsx';
 
 function OfferReviews():ReactElement {
   return (
