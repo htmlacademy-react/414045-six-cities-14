@@ -1,16 +1,21 @@
 import {ReactElement} from 'react';
+import {Offer} from '../../../types/offer.ts';
 
-function OfferFeatures():ReactElement {
+type OfferFeaturesProps = {
+    offer: Offer;
+}
+
+function OfferFeatures({offer}: OfferFeaturesProps): ReactElement {
   return (
     <ul className="offer__features">
       <li className="offer__feature offer__feature--entire">
-        Apartment
+        {offer.type}
       </li>
       <li className="offer__feature offer__feature--bedrooms">
-        3 Bedrooms
+        {offer.bedrooms} Bedrooms
       </li>
       <li className="offer__feature offer__feature--adults">
-        Max 4 adults
+        Max {offer.maxAdults} adults
       </li>
     </ul>
   );
