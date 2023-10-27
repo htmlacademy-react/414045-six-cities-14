@@ -1,9 +1,38 @@
 import {ReactElement} from 'react';
+import {Offer} from '../../types/offer.ts';
 import Footer from '../../components/footer/footer.tsx';
-import {getFavoritesLocations} from '../../mocks/favorites-locations.tsx';
+import FavoritesLocations from '../../components/favorites/favorites-locations/favorites-locations.tsx';
 
-function Favorites():ReactElement {
-  const favoritesLocations: ReactElement[] = getFavoritesLocations();
+type FavoritesProps = {
+    offers: Offer[];
+}
+
+type Favorites = {
+    cityName: string;
+    offers: Offer[];
+}
+
+function prepareFavoritesByCity(offers: Offer[]): Favorites[] {
+  const favoritesByCity: Favorites[] = [];
+
+  offers.forEach((offer: Offer) => {
+    const favorites = favoritesByCity.find((favoritesFromCity) => favoritesFromCity.cityName === offer.city.name);
+
+    if (typeof favorites === 'undefined') {
+      favoritesByCity.push({
+        cityName: offer.city.name,
+        offers: [offer]
+      });
+    } else {
+      favorites.offers.push(offer);
+    }
+  });
+
+  return favoritesByCity;
+}
+
+function Favorites({offers}: FavoritesProps): ReactElement {
+  const favoritesByCity = prepareFavoritesByCity(offers);
 
   return (
     <div className="page">
@@ -12,7 +41,7 @@ function Favorites():ReactElement {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {favoritesLocations.map((locationItems) => locationItems)}
+              {favoritesByCity.map((favorites) => (<FavoritesLocations key={favorites.cityName} favorites={favorites}/>))}
             </ul>
           </section>
         </div>

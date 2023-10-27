@@ -1,14 +1,14 @@
 import {ReactElement} from 'react';
 import PlacesOptions from '../places-options/places-options.tsx';
-import {getPlaceCards} from '../../../mocks/place-cards.tsx';
+import PlaceCardList from '../place-card-list/place-card-list.tsx';
+import {Offer} from '../../../types/offer.ts';
 
 type CitiesPlacesProps = {
   countOffers: number;
+  offers: Offer[];
 }
 
-function CitiesPlaces({countOffers}: CitiesPlacesProps): ReactElement {
-  const placeCards = getPlaceCards();
-
+function CitiesPlaces({countOffers, offers}: CitiesPlacesProps): ReactElement {
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
@@ -23,9 +23,7 @@ function CitiesPlaces({countOffers}: CitiesPlacesProps): ReactElement {
         </span>
         <PlacesOptions/>
       </form>
-      <div className="cities__places-list places__list tabs__content">
-        {placeCards.map((placeCard) => placeCard)}
-      </div>
+      <PlaceCardList offers={offers}/>
     </section>
   );
 }
