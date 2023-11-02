@@ -5,8 +5,8 @@ export const offers: Offer[] = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
         zoom: 10,
       },
       name: 'Amsterdam',
@@ -28,8 +28,8 @@ export const offers: Offer[] = [
     isFavorite: true,
     isPremium: false,
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 8,
     },
     maxAdults: 4,
@@ -43,11 +43,11 @@ export const offers: Offer[] = [
     bedrooms: 4,
     city: {
       location: {
-        latitude: 48.864716,
-        longitude: 2.349014,
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
         zoom: 10,
       },
-      name: 'Paris',
+      name: 'Amsterdam',
     },
     description: 'Paris is known for its gorgeous, imposing monuments. These iconic structures, often an exemplar of a particular era in architecture, are one of the city\'s instantly recognizable elements. The preeminent of Paris\'s landmarks is the Eiffel Tower.',
     goods: [
@@ -66,8 +66,8 @@ export const offers: Offer[] = [
     isFavorite: false,
     isPremium: true,
     location: {
-      latitude: 48.8198875,
-      longitude: 2.2819591,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 8,
     },
     maxAdults: 4,
@@ -81,11 +81,11 @@ export const offers: Offer[] = [
     bedrooms: 2,
     city: {
       location: {
-        latitude: 41.9102088,
-        longitude: 12.3711918,
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
         zoom: 10,
       },
-      name: 'Roma',
+      name: 'Amsterdam',
     },
     description: 'Rome was called the “Eternal City” by the ancient Romans because they believed that no matter what happened in the rest of the world, the city of Rome would always remain standing. Exploring the city center by foot surrounded by glorious monuments and colossal remains takes you back in time to the “glory that was Rome”.',
     goods: [
@@ -104,8 +104,8 @@ export const offers: Offer[] = [
     isFavorite: true,
     isPremium: true,
     location: {
-      latitude: 41.8739356,
-      longitude: 12.4661559,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
       zoom: 8,
     },
     maxAdults: 4,
@@ -119,11 +119,11 @@ export const offers: Offer[] = [
     bedrooms: 1,
     city: {
       location: {
-        latitude: 52.5069386,
-        longitude: 13.2599276,
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
         zoom: 10,
       },
-      name: 'Berlin',
+      name: 'Amsterdam',
     },
     description: 'Berlin, the capital city of Germany, is renowned for its exceptional range of landmarks, vibrant cultural scene and way of life that\'s somehow all go yet relaxed.',
     goods: [
@@ -142,8 +142,8 @@ export const offers: Offer[] = [
     isFavorite: false,
     isPremium: true,
     location: {
-      latitude: 52.5069374,
-      longitude: 13.2599274,
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
       zoom: 8,
     },
     maxAdults: 2,
