@@ -4,7 +4,7 @@ import OfferFeatures from '../../components/offer/offer-features/offer-features.
 import OfferInside from '../../components/offer/offer-inside/offer-inside.tsx';
 import OfferHost from '../../components/offer/offer-host/offer-host.tsx';
 import OfferReviews from '../../components/offer/offer-reviews/offer-reviews.tsx';
-import NearPlaces from '../../components/near-places/near-places/near-places.tsx';
+import NearPlaces from '../../components/places/near-places/near-places.tsx';
 import {MapPoint, Offer as OfferType} from '../../types/offer.ts';
 import {useParams} from 'react-router-dom';
 import NotFound from '../not-found/not-found.tsx';

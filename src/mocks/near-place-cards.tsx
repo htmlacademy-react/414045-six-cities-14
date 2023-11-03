@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {COUNT_NEAR_PLACE_CARDS} from '../consts.ts';
-import NearPlaceCard from '../components/near-places/near-place-card/near-place-card.tsx';
+import NearPlaceCard from '../components/places/near-place-card/near-place-card.tsx';
 
 function getNearPlaceCards():ReactElement[] {
   const nearPlaceCards = [];

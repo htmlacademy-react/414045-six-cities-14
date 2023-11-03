@@ -1,25 +1,23 @@
-import {ReactElement} from 'react';
+import {Fragment, ReactElement} from 'react';
 import {Offer} from '../../../types/offer.ts';
-import {Link} from 'react-router-dom';
+import {generatePath, Link} from 'react-router-dom';
 import PremiumMark from '../../premium-mark/premium-mark.tsx';
 import {getRatingStyle} from '../../../utils.ts';
+import {AppRoute} from '../../../consts.ts';
+import classNames from 'classnames';
 
 type PlaceCardProps = {
   offer: Offer;
-  mouseOverHandler: (offerId: number) => void;
 }
 
-function PlaceCard({offer, mouseOverHandler}: PlaceCardProps): ReactElement {
+function PlaceCard({offer}: PlaceCardProps): ReactElement {
   return (
-    <article className="cities__card place-card" onMouseOver={() => {
-      mouseOverHandler(offer.id);
-    }}
-    >
+    <Fragment>
       {offer.isPremium ? <PremiumMark/> : ''}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={generatePath(AppRoute.Offer, {id: offer.id.toString()})}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image"/>
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -27,11 +25,16 @@ function PlaceCard({offer, mouseOverHandler}: PlaceCardProps): ReactElement {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={offer.isFavorite ? 'place-card__bookmark-button--active button' : 'place-card__bookmark-button button'} type="button">
+          <button className={classNames(
+            'place-card__bookmark-button',
+            'button',
+            {'place-card__bookmark-button--active': offer.isFavorite}
+          )} type="button"
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">In bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -41,11 +44,11 @@ function PlaceCard({offer, mouseOverHandler}: PlaceCardProps): ReactElement {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+          <Link to={generatePath(AppRoute.Offer, {id: offer.id.toString()})}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
-    </article>
+    </Fragment>
   );
 }
 
