@@ -10,6 +10,7 @@ type MapProps = {
   city: City;
   points: MapPoint[];
   selectedPoint: MapPoint;
+  className: string;
 }
 
 const defaultIcon = new Icon({
@@ -18,7 +19,7 @@ const defaultIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-export default function Map({city, points, selectedPoint}:MapProps):ReactElement {
+export default function Map({city, points, selectedPoint, className}:MapProps):ReactElement {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -41,6 +42,6 @@ export default function Map({city, points, selectedPoint}:MapProps):ReactElement
   }, [map, points, selectedPoint]);
 
   return(
-    <section className="cities__map map" ref={mapRef}></section>
+    <section className={className} ref={mapRef}></section>
   );
 }

@@ -6,7 +6,7 @@ function getNearPlaceCards():ReactElement[] {
   const nearPlaceCards = [];
 
   for (let i = 0; i < COUNT_NEAR_PLACE_CARDS; i++) {
-    nearPlaceCards.push(<NearPlaceCard/>);
+    nearPlaceCards.push(<NearPlaceCard key={i}/>);
   }
 
   return nearPlaceCards;

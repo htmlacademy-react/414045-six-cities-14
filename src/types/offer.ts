@@ -1,14 +1,9 @@
+import {User} from './user.ts';
+
 export type MapPoint = {
   latitude: number;
   longitude: number;
   zoom: number;
-}
-
-export type OfferHost = {
-  avatarUrl: string;
-  id: number;
-  isPro: boolean;
-  name: string;
 }
 
 export type City = {
@@ -21,7 +16,7 @@ export type Offer = {
   city: City;
   description: string;
   goods: string[];
-  host: OfferHost;
+  host: User;
   id: number;
   images: string[];
   isFavorite: boolean;

@@ -2,7 +2,7 @@ import {ReactElement} from 'react';
 import {Offer} from '../../../types/offer.ts';
 import PremiumMark from '../../premium-mark/premium-mark.tsx';
 import {Link} from 'react-router-dom';
-import {RATING_COEFFICIENT} from '../../../consts.ts';
+import {getRatingStyle} from '../../../utils.ts';
 
 type FavoritesCardProps = {
   offer: Offer;
@@ -32,7 +32,7 @@ function FavoritesCard({offer}:FavoritesCardProps):ReactElement {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${offer.rating * RATING_COEFFICIENT}%`}}></span>
+            <span style={getRatingStyle(offer.rating)}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

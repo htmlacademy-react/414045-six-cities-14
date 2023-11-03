@@ -5,16 +5,18 @@ import OfferInside from '../../components/offer/offer-inside/offer-inside.tsx';
 import OfferHost from '../../components/offer/offer-host/offer-host.tsx';
 import OfferReviews from '../../components/offer/offer-reviews/offer-reviews.tsx';
 import NearPlaces from '../../components/near-places/near-places/near-places.tsx';
-import {Offer as OfferType} from '../../types/offer.ts';
+import {MapPoint, Offer as OfferType} from '../../types/offer.ts';
 import {useParams} from 'react-router-dom';
 import NotFound from '../not-found/not-found.tsx';
-import {RATING_COEFFICIENT} from '../../consts.ts';
+import {offerReviews} from '../../mocks/offer-reviews.ts';
+import Map from '../../components/map/map.tsx';
+import {getRatingStyle} from '../../utils.ts';
 
 type OfferProps = {
   offers: OfferType[];
 }
 
-function PremiumMark():ReactElement {
+function PremiumMark(): ReactElement {
   return (
     <div className="offer__mark">
       <span>Premium</span>
@@ -22,9 +24,15 @@ function PremiumMark():ReactElement {
   );
 }
 
-function Offer({offers}:OfferProps):ReactElement {
+function getOfferLocations(offers: OfferType[]): MapPoint[]{
+  return offers.map((offer) => offer.location);
+}
+
+function Offer({offers}: OfferProps): ReactElement {
   const params = useParams();
   const offer = offers.find((offerItem) => offerItem.id === Number(params.id));
+  const reviews = offerReviews;
+  const points = getOfferLocations(offers);
 
   if (typeof offer === 'undefined') {
     return <NotFound/>;
@@ -51,7 +59,7 @@ function Offer({offers}:OfferProps):ReactElement {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{width: `${offer.rating * RATING_COEFFICIENT}%`}}></span>
+                  <span style={getRatingStyle(offer.rating)}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">{offer.rating}</span>
@@ -63,13 +71,15 @@ function Offer({offers}:OfferProps):ReactElement {
               </div>
               <OfferInside offer={offer}/>
               <OfferHost offer={offer}/>
-              <OfferReviews/>
+              <OfferReviews reviews={reviews}/>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <section className="offer__map map">
+            <Map className={'offer__map map'} city={offer.city} points={points} selectedPoint={offer.location}/>
+          </section>
         </section>
         <div className="container">
-          <NearPlaces/>
+          <NearPlaces offers={offers} currentOffer={offer}/>
         </div>
       </main>
     </div>
