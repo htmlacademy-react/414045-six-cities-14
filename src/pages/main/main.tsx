@@ -37,7 +37,7 @@ function Main({countOffers, offers}: MainProps) {
           <div className="cities__places-container container">
             <CitiesPlaces countOffers={countOffers} offers={offers}/>
             <div className="cities__right-section">
-              <Map city={city} points={points} selectedPoint={defaultPoint}/>
+              <Map className={'cities__map map'} city={city} points={points} selectedPoint={defaultPoint}/>
             </div>
           </div>
         </div>
