@@ -5,16 +5,13 @@ import OfferInside from '../../components/offer/offer-inside/offer-inside.tsx';
 import OfferHost from '../../components/offer/offer-host/offer-host.tsx';
 import OfferReviews from '../../components/offer/offer-reviews/offer-reviews.tsx';
 import NearPlaces from '../../components/places/near-places/near-places.tsx';
-import {MapPoint, Offer as OfferType} from '../../types/offer.ts';
 import {useParams} from 'react-router-dom';
 import NotFound from '../not-found/not-found.tsx';
 import {offerReviews} from '../../mocks/offer-reviews.ts';
 import Map from '../../components/map/map.tsx';
 import {getRatingStyle} from '../../utils.ts';
-
-type OfferProps = {
-  offers: OfferType[];
-}
+import {useAppSelector} from '../../hooks/hooks.ts';
+import {getLocationOffers} from '../../services/offer-service.ts';
 
 function PremiumMark(): ReactElement {
   return (
@@ -24,19 +21,17 @@ function PremiumMark(): ReactElement {
   );
 }
 
-function getOfferLocations(offers: OfferType[]): MapPoint[]{
-  return offers.map((offer) => offer.location);
-}
-
-function Offer({offers}: OfferProps): ReactElement {
+function Offer(): ReactElement {
+  const offers = useAppSelector((store) => store.offers);
   const params = useParams();
   const offer = offers.find((offerItem) => offerItem.id === Number(params.id));
   const reviews = offerReviews;
-  const points = getOfferLocations(offers);
 
   if (typeof offer === 'undefined') {
     return <NotFound/>;
   }
+
+  const cityOffers = getLocationOffers(offer.city, offers);
 
   return (
     <div className="page">
@@ -75,11 +70,11 @@ function Offer({offers}: OfferProps): ReactElement {
             </div>
           </div>
           <section className="offer__map map">
-            <Map className={'offer__map map'} city={offer.city} points={points} selectedPoint={offer.location}/>
+            <Map className={'offer__map map'} offers={cityOffers} city={offer.city}/>
           </section>
         </section>
         <div className="container">
-          <NearPlaces offers={offers} currentOffer={offer}/>
+          <NearPlaces offers={cityOffers} currentOffer={offer}/>
         </div>
       </main>
     </div>

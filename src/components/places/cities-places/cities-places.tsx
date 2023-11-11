@@ -4,15 +4,15 @@ import PlaceCardList from '../place-card-list/place-card-list.tsx';
 import {Offer} from '../../../types/offer.ts';
 
 type CitiesPlacesProps = {
-  countOffers: number;
+  cityName: string;
   offers: Offer[];
 }
 
-function CitiesPlaces({countOffers, offers}: CitiesPlacesProps): ReactElement {
+function CitiesPlaces({offers, cityName}: CitiesPlacesProps): ReactElement {
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{countOffers} places to stay in Amsterdam</b>
+      <b className="places__found">{offers.length} places to stay in {cityName}</b>
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
         <span className="places__sorting-type" tabIndex={0}>
