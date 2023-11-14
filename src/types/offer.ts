@@ -1,4 +1,5 @@
 import {User} from './user.ts';
+import {CityName} from '../consts.ts';
 
 export type MapPoint = {
   latitude: number;
@@ -8,7 +9,7 @@ export type MapPoint = {
 
 export type City = {
   location: MapPoint;
-  name: string;
+  name: CityName;
 }
 
 export type Offer = {
