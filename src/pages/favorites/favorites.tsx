@@ -3,10 +3,10 @@ import {Offer} from '../../types/offer.ts';
 import Footer from '../../components/footer/footer.tsx';
 import FavoritesLocations from '../../components/favorites/favorites-locations/favorites-locations.tsx';
 import {useAppSelector} from '../../hooks/hooks.ts';
-import {City} from '../../consts.ts';
+import {CityName} from '../../consts.ts';
 
 type Favorites = {
-    cityName: City;
+    cityName: CityName;
     offers: Offer[];
 }
 

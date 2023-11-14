@@ -2,11 +2,11 @@ import {ReactElement, SyntheticEvent, useEffect, useState} from 'react';
 import PlacesOptions from '../places-options/places-options.tsx';
 import PlaceCardList from '../place-card-list/place-card-list.tsx';
 import {Offer} from '../../../types/offer.ts';
-import {DEFAULT_SORTING_OPTION} from '../../../consts.ts';
+import {DEFAULT_SORTING_OPTION, CityName} from '../../../consts.ts';
 import {sortOffers} from '../../../services/offer-service.ts';
 
 type CitiesPlacesProps = {
-  cityName: string;
+  cityName: CityName;
   offers: Offer[];
 }
 

@@ -1,5 +1,5 @@
 import {User} from './user.ts';
-import {City as CityName} from '../consts.ts';
+import {CityName as CityName} from '../consts.ts';
 
 export type MapPoint = {
   latitude: number;

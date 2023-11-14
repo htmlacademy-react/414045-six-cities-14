@@ -3,7 +3,7 @@ const RATING_COEFFICIENT: number = 20;
 const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 
-enum City {
+enum CityName {
   Paris = 'Paris',
   Cologne = 'Cologne',
   Brussels = 'Brussels',
@@ -19,7 +19,7 @@ const CITIES = [
       longitude: 2.3488,
       zoom: 10,
     },
-    name: City.Paris,
+    name: CityName.Paris,
   },
   {
     location: {
@@ -27,7 +27,7 @@ const CITIES = [
       longitude: 6.95,
       zoom: 10,
     },
-    name: City.Cologne,
+    name: CityName.Cologne,
   },
   {
     location: {
@@ -35,7 +35,7 @@ const CITIES = [
       longitude: 4.34878,
       zoom: 10,
     },
-    name: City.Brussels,
+    name: CityName.Brussels,
   },
   {
     location: {
@@ -43,7 +43,7 @@ const CITIES = [
       longitude: 4.85309666406198,
       zoom: 10,
     },
-    name: City.Amsterdam,
+    name: CityName.Amsterdam,
   },
   {
     location: {
@@ -51,7 +51,7 @@ const CITIES = [
       longitude: 10.0153,
       zoom: 10,
     },
-    name: City.Hamburg,
+    name: CityName.Hamburg,
   },
   {
     location: {
@@ -59,11 +59,11 @@ const CITIES = [
       longitude: 6.77616,
       zoom: 10,
     },
-    name: City.Dusseldorf,
+    name: CityName.Dusseldorf,
   }
 ];
 
-const DEFAULT_CITY = City.Paris;
+const DEFAULT_CITY = CityName.Paris;
 
 enum SortOption {
   Popular = 'popular',
@@ -117,5 +117,5 @@ export {
   AppRoute,
   AuthorizationStatus,
   SortOption,
-  City
+  CityName
 };

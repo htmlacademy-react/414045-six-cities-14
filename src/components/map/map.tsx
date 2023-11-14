@@ -2,7 +2,7 @@ import {ReactElement, useEffect, useRef} from 'react';
 import {City, MapPoint, Offer} from '../../types/offer.ts';
 import useMap from '../../hooks/use-map.tsx';
 import {Icon, LatLng, layerGroup, Marker} from 'leaflet';
-import {URL_MARKER_DEFAULT, City as CityName} from '../../consts.ts';
+import {URL_MARKER_DEFAULT, CityName as CityName} from '../../consts.ts';
 
 import 'leaflet/dist/leaflet.css';
 
