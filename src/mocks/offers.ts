@@ -1,5 +1,5 @@
 import {Offer} from '../types/offer.ts';
-import {CityName} from "../consts.ts";
+import {CityName} from '../consts.ts';
 
 export const offers: Offer[] = [
   {
