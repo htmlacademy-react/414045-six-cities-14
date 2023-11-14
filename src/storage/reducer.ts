@@ -2,9 +2,10 @@ import {offers as defaultOffers} from '../mocks/offers.ts';
 import {createReducer} from '@reduxjs/toolkit';
 import {selectCity, setOffers} from './action.ts';
 import {CITIES, DEFAULT_CITY} from '../consts.ts';
+import {City} from '../types/offer.ts';
 
 const initialState = {
-  city: CITIES.find((city) => city.name === DEFAULT_CITY),
+  city: CITIES.find((city) => city.name === DEFAULT_CITY) as City,
   offers: defaultOffers
 };
 
