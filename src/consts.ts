@@ -3,6 +3,15 @@ const RATING_COEFFICIENT: number = 20;
 const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 
+enum City {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
+}
+
 const CITIES = [
   {
     location: {
@@ -10,7 +19,7 @@ const CITIES = [
       longitude: 2.3488,
       zoom: 10,
     },
-    name: 'Paris',
+    name: City.Paris,
   },
   {
     location: {
@@ -18,7 +27,7 @@ const CITIES = [
       longitude: 6.95,
       zoom: 10,
     },
-    name: 'Cologne',
+    name: City.Cologne,
   },
   {
     location: {
@@ -26,7 +35,7 @@ const CITIES = [
       longitude: 4.34878,
       zoom: 10,
     },
-    name: 'Brussels',
+    name: City.Brussels,
   },
   {
     location: {
@@ -34,7 +43,7 @@ const CITIES = [
       longitude: 4.85309666406198,
       zoom: 10,
     },
-    name: 'Amsterdam',
+    name: City.Amsterdam,
   },
   {
     location: {
@@ -42,7 +51,7 @@ const CITIES = [
       longitude: 10.0153,
       zoom: 10,
     },
-    name: 'Hamburg',
+    name: City.Hamburg,
   },
   {
     location: {
@@ -50,11 +59,39 @@ const CITIES = [
       longitude: 6.77616,
       zoom: 10,
     },
-    name: 'Dusseldorf',
+    name: City.Dusseldorf,
   }
 ];
 
-const DEFAULT_CITY = 'Paris';
+const DEFAULT_CITY = City.Paris;
+
+enum SortOption {
+  Popular = 'popular',
+  PriceLowToHigh = 'priceLowToHigh',
+  PriceHighToLow = 'priceHighToLow',
+  TopRatedFirst = 'topRatedFirst'
+}
+
+const SORTING_OPTIONS = [
+  {
+    sign: SortOption.Popular,
+    name: 'Popular'
+  },
+  {
+    sign: SortOption.PriceLowToHigh,
+    name: 'Price: low to high'
+  },
+  {
+    sign: SortOption.PriceHighToLow,
+    name: 'Price: high to low'
+  },
+  {
+    sign: SortOption.TopRatedFirst,
+    name: 'Top rated first'
+  }
+];
+
+const DEFAULT_SORTING_OPTION = SortOption.Popular;
 
 enum AppRoute {
   Main = '/',
@@ -75,6 +112,10 @@ export {
   URL_MARKER_DEFAULT,
   DEFAULT_CITY,
   CITIES,
+  SORTING_OPTIONS,
+  DEFAULT_SORTING_OPTION,
   AppRoute,
-  AuthorizationStatus
+  AuthorizationStatus,
+  SortOption,
+  City
 };

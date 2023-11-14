@@ -1,12 +1,18 @@
-import {ReactElement} from 'react';
+import {MouseEventHandler, ReactElement} from 'react';
+import {SORTING_OPTIONS} from '../../../consts.ts';
+import classNames from 'classnames';
 
-function PlacesOptions():ReactElement {
+type PlacesOptionsProps = {
+  isOpen: boolean;
+  onChangeOptionHandler: MouseEventHandler;
+}
+
+function PlacesOptions({isOpen, onChangeOptionHandler}: PlacesOptionsProps): ReactElement {
   return (
-    <ul className="places__options places__options--custom places__options--opened">
-      <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-      <li className="places__option" tabIndex={0}>Price: low to high</li>
-      <li className="places__option" tabIndex={0}>Price: high to low</li>
-      <li className="places__option" tabIndex={0}>Top rated first</li>
+    <ul className={classNames('places__options', 'places__options--custom', {'places__options--opened': isOpen})}>
+      {SORTING_OPTIONS.map((option) => (
+        <li key={option.sign} id={option.sign} onClick={onChangeOptionHandler} className="places__option places__option--active" tabIndex={0}>{option.name}</li>)
+      )}
     </ul>
   );
 }

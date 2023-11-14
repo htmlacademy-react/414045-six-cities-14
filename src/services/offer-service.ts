@@ -1,7 +1,36 @@
 import {City, Offer} from '../types/offer.ts';
+import {SortOption} from '../consts.ts';
 
 function getLocationOffers(city: City, offers: Offer[]) {
   return offers.filter((offer) => offer.city.name === city.name);
 }
 
-export {getLocationOffers};
+function getLowToHighPriceSortedOffers(offers: Offer[]) {
+  return offers.sort((a, b) => a.price - b.price);
+}
+
+function getHighToLowOffers(offers: Offer[]) {
+  return offers.sort((a, b) => b.price - a.price);
+}
+
+function getTopRatedOffers(offers: Offer[]) {
+  return offers.sort((a, b) => b.rating - a.rating);
+}
+
+function sortOffers(offers: Offer[], sortType: string) {
+  const sortingOffers = [...offers];
+
+  switch (sortType) {
+    case SortOption.PriceLowToHigh:
+      return getLowToHighPriceSortedOffers(sortingOffers);
+    case SortOption.PriceHighToLow:
+      return getHighToLowOffers(sortingOffers);
+    case SortOption.TopRatedFirst:
+      return getTopRatedOffers(sortingOffers);
+    case SortOption.Popular:
+    default:
+      return sortingOffers;
+  }
+}
+
+export {getLocationOffers, sortOffers};
