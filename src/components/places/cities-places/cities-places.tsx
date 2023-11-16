@@ -2,7 +2,7 @@ import {ReactElement, SyntheticEvent, useEffect, useState} from 'react';
 import PlacesOptions from '../places-options/places-options.tsx';
 import PlaceCardList from '../place-card-list/place-card-list.tsx';
 import {Offer} from '../../../types/offer.ts';
-import {DEFAULT_SORTING_OPTION, CityName} from '../../../consts.ts';
+import {DEFAULT_SORTING_OPTION, CityName, SortOption} from '../../../consts.ts';
 import {sortOffers} from '../../../services/offer-service.ts';
 
 type CitiesPlacesProps = {
@@ -13,7 +13,7 @@ type CitiesPlacesProps = {
 function CitiesPlaces({offers, cityName}: CitiesPlacesProps): ReactElement {
   const [sortedOffers, setSortedOffers] = useState(offers);
   const [isOpenSortPopup, setIsOpenSortPopup] = useState<boolean>(false);
-  const [currentSortingOption, setCurrentSortingOption] = useState<string>(DEFAULT_SORTING_OPTION);
+  const [currentSortingOption, setCurrentSortingOption] = useState<SortOption>(DEFAULT_SORTING_OPTION);
 
   useEffect(() => {
     setSortedOffers(offers);
@@ -21,7 +21,7 @@ function CitiesPlaces({offers, cityName}: CitiesPlacesProps): ReactElement {
 
   const onChangeOfferOptionHandler = (evt: SyntheticEvent) => {
     if (evt.target instanceof HTMLElement) {
-      const optionSign = evt.target.getAttribute('id') ?? DEFAULT_SORTING_OPTION;
+      const optionSign: SortOption = evt.target.getAttribute('id') as SortOption ?? DEFAULT_SORTING_OPTION;
       setCurrentSortingOption(optionSign);
       setSortedOffers(sortOffers(offers, optionSign));
     }

@@ -1,7 +1,6 @@
 const COUNT_OFFERS: number = 243;
 const RATING_COEFFICIENT: number = 20;
-const URL_MARKER_DEFAULT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+
 
 enum CityName {
   Paris = 'Paris',
@@ -109,7 +108,6 @@ enum AuthorizationStatus {
 export {
   COUNT_OFFERS,
   RATING_COEFFICIENT,
-  URL_MARKER_DEFAULT,
   DEFAULT_CITY,
   CITIES,
   SORTING_OPTIONS,

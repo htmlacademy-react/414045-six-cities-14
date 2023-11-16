@@ -7,6 +7,8 @@ export type MapPoint = {
   zoom: number;
 }
 
+export type ActiveMapPoint = MapPoint|undefined;
+
 export type City = {
   location: MapPoint;
   name: CityName;
