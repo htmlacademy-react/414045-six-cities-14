@@ -1,16 +1,15 @@
 import {ReactElement, useEffect, useRef} from 'react';
-import {City, MapPoint} from '../../types/offer.ts';
+import {City, MapPoint, Offer} from '../../types/offer.ts';
 import useMap from '../../hooks/use-map.tsx';
-import {Icon, layerGroup, Marker} from 'leaflet';
-import {URL_MARKER_DEFAULT} from '../../consts.ts';
+import {Icon, LatLng, layerGroup, Marker} from 'leaflet';
+import {CityName, URL_MARKER_DEFAULT} from '../../consts.ts';
 
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
-  city: City;
-  points: MapPoint[];
-  selectedPoint: MapPoint;
   className: string;
+  offers: Offer[];
+  city: City;
 }
 
 const defaultIcon = new Icon({
@@ -19,13 +18,29 @@ const defaultIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-export default function Map({city, points, selectedPoint, className}:MapProps):ReactElement {
+function getCityPoints(cityName: CityName, offers: Offer[]): MapPoint[] {
+  const points: MapPoint[] = [];
+
+  offers.forEach((offer) => {
+    if (offer.city.name === cityName) {
+      points.push(offer.location);
+    }
+  });
+
+  return points;
+}
+
+export default function Map({className, city, offers}: MapProps): ReactElement {
+  const points = getCityPoints(city.name, offers);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
   useEffect(() => {
     if (map) {
+      const {latitude, longitude, zoom} = city.location;
       const markerLayer = layerGroup().addTo(map);
+
+      map.setView(new LatLng(latitude, longitude), zoom);
       points.forEach((point) => {
         const marker = new Marker({
           lat: point.latitude,
@@ -39,9 +54,9 @@ export default function Map({city, points, selectedPoint, className}:MapProps):R
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, points, selectedPoint]);
+  }, [map, city, points]);
 
-  return(
+  return (
     <section className={className} ref={mapRef}></section>
   );
 }

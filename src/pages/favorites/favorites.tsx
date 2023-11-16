@@ -2,13 +2,11 @@ import {ReactElement} from 'react';
 import {Offer} from '../../types/offer.ts';
 import Footer from '../../components/footer/footer.tsx';
 import FavoritesLocations from '../../components/favorites/favorites-locations/favorites-locations.tsx';
-
-type FavoritesProps = {
-    offers: Offer[];
-}
+import {useAppSelector} from '../../hooks/hooks.ts';
+import {CityName} from '../../consts.ts';
 
 type Favorites = {
-    cityName: string;
+    cityName: CityName;
     offers: Offer[];
 }
 
@@ -31,7 +29,8 @@ function prepareFavoritesByCity(offers: Offer[]): Favorites[] {
   return favoritesByCity;
 }
 
-function Favorites({offers}: FavoritesProps): ReactElement {
+function Favorites(): ReactElement {
+  const offers = useAppSelector((store) => store.offers);
   const favoritesByCity = prepareFavoritesByCity(offers);
 
   return (

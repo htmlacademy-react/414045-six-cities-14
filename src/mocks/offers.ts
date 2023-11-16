@@ -1,15 +1,16 @@
 import {Offer} from '../types/offer.ts';
+import {CityName} from '../consts.ts';
 
 export const offers: Offer[] = [
   {
     bedrooms: 3,
-    city: {
+    city:  {
       location: {
-        latitude: 52.3909553943508,
-        longitude: 4.85309666406198,
+        latitude: 51.2217,
+        longitude: 6.77616,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: CityName.Dusseldorf,
     },
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: [
@@ -28,8 +29,8 @@ export const offers: Offer[] = [
     isFavorite: true,
     isPremium: false,
     location: {
-      latitude: 52.3909553943508,
-      longitude: 4.85309666406198,
+      latitude: 51.2217,
+      longitude: 6.77616,
       zoom: 8,
     },
     maxAdults: 4,
@@ -47,7 +48,7 @@ export const offers: Offer[] = [
         longitude: 4.85309666406198,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: CityName.Amsterdam,
     },
     description: 'Paris is known for its gorgeous, imposing monuments. These iconic structures, often an exemplar of a particular era in architecture, are one of the city\'s instantly recognizable elements. The preeminent of Paris\'s landmarks is the Eiffel Tower.',
     goods: [
@@ -81,11 +82,11 @@ export const offers: Offer[] = [
     bedrooms: 2,
     city: {
       location: {
-        latitude: 52.3909553943508,
-        longitude: 4.85309666406198,
+        latitude: 50.8504,
+        longitude: 4.34878,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: CityName.Brussels,
     },
     description: 'Rome was called the “Eternal City” by the ancient Romans because they believed that no matter what happened in the rest of the world, the city of Rome would always remain standing. Exploring the city center by foot surrounded by glorious monuments and colossal remains takes you back in time to the “glory that was Rome”.',
     goods: [
@@ -104,8 +105,8 @@ export const offers: Offer[] = [
     isFavorite: true,
     isPremium: true,
     location: {
-      latitude: 52.3909553943508,
-      longitude: 4.929309666406198,
+      latitude: 50.8504,
+      longitude: 4.34878,
       zoom: 8,
     },
     maxAdults: 4,
@@ -123,7 +124,7 @@ export const offers: Offer[] = [
         longitude: 4.85309666406198,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: CityName.Amsterdam,
     },
     description: 'Berlin, the capital city of Germany, is renowned for its exceptional range of landmarks, vibrant cultural scene and way of life that\'s somehow all go yet relaxed.',
     goods: [
