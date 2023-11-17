@@ -11,6 +11,15 @@ enum CityName {
   Dusseldorf = 'Dusseldorf',
 }
 
+enum CityName {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
+}
+
 const CITIES = [
   {
     location: {

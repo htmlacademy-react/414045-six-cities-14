@@ -2,10 +2,10 @@ import {ReactElement, useEffect, useRef} from 'react';
 import {City, MapPoint, Offer} from '../../types/offer.ts';
 import useMap from '../../hooks/use-map.tsx';
 import {Icon, LatLng, layerGroup, Marker} from 'leaflet';
-import {CityName as CityName} from '../../consts.ts';
+import {CityName} from '../../consts.ts';
+import {useAppSelector} from '../../hooks/hooks.ts';
 
 import 'leaflet/dist/leaflet.css';
-import {useAppSelector} from '../../hooks/hooks.ts';
 
 const SRC_MARKER_DEFAULT = 'img/pin.svg';
 const SRC_ACTIVE_MARKER = 'img/pin-active.svg';
