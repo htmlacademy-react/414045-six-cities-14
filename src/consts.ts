@@ -1,7 +1,6 @@
 const COUNT_OFFERS: number = 243;
 const RATING_COEFFICIENT: number = 20;
-const URL_MARKER_DEFAULT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+
 
 enum CityName {
   Paris = 'Paris',
@@ -65,6 +64,34 @@ const CITIES = [
 
 const DEFAULT_CITY = CityName.Paris;
 
+enum SortOption {
+  Popular = 'popular',
+  PriceLowToHigh = 'priceLowToHigh',
+  PriceHighToLow = 'priceHighToLow',
+  TopRatedFirst = 'topRatedFirst'
+}
+
+const SORTING_OPTIONS = [
+  {
+    sign: SortOption.Popular,
+    name: 'Popular'
+  },
+  {
+    sign: SortOption.PriceLowToHigh,
+    name: 'Price: low to high'
+  },
+  {
+    sign: SortOption.PriceHighToLow,
+    name: 'Price: high to low'
+  },
+  {
+    sign: SortOption.TopRatedFirst,
+    name: 'Top rated first'
+  }
+];
+
+const DEFAULT_SORTING_OPTION = SortOption.Popular;
+
 enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -81,10 +108,12 @@ enum AuthorizationStatus {
 export {
   COUNT_OFFERS,
   RATING_COEFFICIENT,
-  URL_MARKER_DEFAULT,
   DEFAULT_CITY,
   CITIES,
+  SORTING_OPTIONS,
+  DEFAULT_SORTING_OPTION,
   AppRoute,
   AuthorizationStatus,
+  SortOption,
   CityName
 };
