@@ -7,9 +7,17 @@ import Offer from '../../pages/offer/offer.tsx';
 import Layout from '../layout/layout.tsx';
 import PrivateRoute from '../private-route/private-route.tsx';
 import Favorites from '../../pages/favorites/favorites.tsx';
-import {ReactElement} from 'react';
+import {ReactElement, useEffect} from 'react';
+import {useAppDispatch} from '../../hooks/hooks.ts';
+import {loadOffersAction} from '../../storage/api-action.tsx';
 
 function App(): ReactElement {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadOffersAction());
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Routes>

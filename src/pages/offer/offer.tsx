@@ -7,11 +7,11 @@ import OfferReviews from '../../components/offer/offer-reviews/offer-reviews.tsx
 import NearPlaces from '../../components/places/near-places/near-places.tsx';
 import {useParams} from 'react-router-dom';
 import NotFound from '../not-found/not-found.tsx';
-import {offerReviews} from '../../mocks/offer-reviews.ts';
 import Map from '../../components/map/map.tsx';
 import {getRatingStyle} from '../../utils.ts';
 import {useAppSelector} from '../../hooks/hooks.ts';
 import {getLocationOffers} from '../../services/offer-service.ts';
+import {offerReviews} from '../../mocks/offer-reviews.ts';
 
 function PremiumMark(): ReactElement {
   return (

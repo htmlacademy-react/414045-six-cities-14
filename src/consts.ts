@@ -99,6 +99,14 @@ enum AppRoute {
   Favorites = '/favorites'
 }
 
+enum APIRoute {
+  Offers = '/offers',
+  Favorite = '/favorite',
+  Comments = '/comments',
+  Login = '/login',
+  Logout = '/logout'
+}
+
 enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
@@ -113,6 +121,7 @@ export {
   SORTING_OPTIONS,
   DEFAULT_SORTING_OPTION,
   AppRoute,
+  APIRoute,
   AuthorizationStatus,
   SortOption,
   CityName
