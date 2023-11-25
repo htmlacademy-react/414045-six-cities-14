@@ -1,4 +1,4 @@
-import {ReactElement} from 'react';
+import {ReactElement, useEffect} from 'react';
 import OfferGallery from '../../components/offer/offer-gallery/offer-gallery.tsx';
 import OfferFeatures from '../../components/offer/offer-features/offer-features.tsx';
 import OfferInside from '../../components/offer/offer-inside/offer-inside.tsx';
@@ -9,9 +9,8 @@ import {useParams} from 'react-router-dom';
 import NotFound from '../not-found/not-found.tsx';
 import Map from '../../components/map/map.tsx';
 import {getRatingStyle} from '../../utils.ts';
-import {useAppSelector} from '../../hooks/hooks.ts';
-import {getLocationOffers} from '../../services/offer-service.ts';
-import {offerReviews} from '../../mocks/offer-reviews.ts';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks.ts';
+import {loadNearbyOffersAction, loadOfferAction, loadReviewsAction} from '../../storage/api-action.ts';
 
 function PremiumMark(): ReactElement {
   return (
@@ -22,16 +21,28 @@ function PremiumMark(): ReactElement {
 }
 
 function Offer(): ReactElement {
-  const offers = useAppSelector((store) => store.offers);
+  const dispatch = useAppDispatch();
   const params = useParams();
-  const offer = offers.find((offerItem) => offerItem.id === Number(params.id));
-  const reviews = offerReviews;
+  const offerId = Number(params.id);
 
-  if (typeof offer === 'undefined') {
-    return <NotFound/>;
+  const offer = useAppSelector((store) => store.offer);
+  const nearbyOffers = useAppSelector((store) => store.nearbyOffers);
+  const reviews = useAppSelector((store) => store.reviews);
+  const offers = [...nearbyOffers];
+
+  if (offer !== null) {
+    offers.push(offer);
   }
 
-  const cityOffers = getLocationOffers(offer.city, offers);
+  useEffect(() => {
+    dispatch(loadOfferAction(offerId));
+    dispatch(loadReviewsAction(offerId));
+    dispatch(loadNearbyOffersAction(offerId));
+  }, [dispatch, offerId]);
+
+  if (offer === null) {
+    return <NotFound/>;
+  }
 
   return (
     <div className="page">
@@ -66,15 +77,15 @@ function Offer(): ReactElement {
               </div>
               <OfferInside offer={offer}/>
               <OfferHost offer={offer}/>
-              <OfferReviews reviews={reviews}/>
+              <OfferReviews offerId={offer.id} reviews={reviews}/>
             </div>
           </div>
           <section className="offer__map map">
-            <Map className={'offer__map map'} offers={cityOffers} city={offer.city}/>
+            <Map className={'offer__map map'} offers={offers} city={offer.city}/>
           </section>
         </section>
         <div className="container">
-          <NearPlaces offers={cityOffers} currentOffer={offer}/>
+          <NearPlaces offers={nearbyOffers}/>
         </div>
       </main>
     </div>

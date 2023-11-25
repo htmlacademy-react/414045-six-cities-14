@@ -20,7 +20,7 @@ export type Offer = {
   description: string;
   goods: string[];
   host: User;
-  id: number;
+  id: OfferId;
   images: string[];
   isFavorite: boolean;
   isPremium: boolean;
@@ -32,3 +32,5 @@ export type Offer = {
   title: string;
   type: string;
 }
+
+export type OfferId = number;
