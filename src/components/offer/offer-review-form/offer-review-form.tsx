@@ -1,11 +1,20 @@
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, SyntheticEvent, useState} from 'react';
+import {useAppDispatch, useAppSelector} from '../../../hooks/hooks.ts';
+import {addReviewAction} from '../../../storage/api-action.ts';
+import {NewReviewData} from '../../../types/review.ts';
 
 type FormData = {
     rating: string;
     review: string;
 }
 
-function OfferReviewForm() {
+type OfferReviewFormProps = {
+  offerId: number;
+}
+
+function OfferReviewForm({offerId}: OfferReviewFormProps) {
+  const dispatch = useAppDispatch();
+  const authInfo = useAppSelector((store) => store.authInfo);
   const [formData, setFormData] = useState<FormData>({
     rating: '',
     review: ''
@@ -19,8 +28,24 @@ function OfferReviewForm() {
     });
   };
 
+  const submitHandler = (evt: SyntheticEvent) => {
+    evt.preventDefault();
+
+    if (!authInfo) {
+      return;
+    }
+
+    const reviewData: NewReviewData = {
+      offerId: offerId,
+      comment: formData.review,
+      rating: Number(formData.rating),
+    };
+
+    dispatch(addReviewAction(reviewData));
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form onSubmit={submitHandler} className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         <input onChange={fieldChangeHandler} className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"/>
@@ -63,7 +88,7 @@ function OfferReviewForm() {
         <p className="reviews__help">
                     To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit">Submit</button>
       </div>
     </form>
   );

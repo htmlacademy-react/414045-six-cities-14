@@ -7,3 +7,9 @@ export type Review = {
   rating: number;
   user: User;
 }
+
+export type NewReviewData = {
+  offerId: number;
+  comment: string;
+  rating: number;
+}

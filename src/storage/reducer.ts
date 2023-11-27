@@ -4,16 +4,20 @@ import {
   setActiveMapPoint,
   setAuthInfo,
   setAuthorizationStatus, setError,
-  setLoadingStatus,
-  setOffers
+  setLoadingStatus, setNearbyOffers, setOffer,
+  setOffers, setReviews
 } from './action.ts';
 import {AuthorizationStatus, CITIES, DEFAULT_CITY} from '../consts.ts';
 import {ActiveMapPoint, City, Offer} from '../types/offer.ts';
 import {AuthInfo} from '../types/user.ts';
+import {Review} from '../types/review.ts';
 
 type State = {
   city: City;
   offers: Offer[];
+  nearbyOffers: Offer[];
+  offer: Offer|null;
+  reviews: Review[];
   activeMapPoint: ActiveMapPoint;
   isLoading: boolean;
   authorizationStatus: AuthorizationStatus;
@@ -24,6 +28,9 @@ type State = {
 const initialState: State = {
   city: CITIES.find((city) => city.name === DEFAULT_CITY) as City,
   offers: [],
+  nearbyOffers: [],
+  offer: null,
+  reviews: [],
   activeMapPoint: undefined,
   isLoading: true,
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -40,6 +47,18 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(setOffers, (state, action) => {
       const {offers} = action.payload;
       state.offers = offers;
+    })
+    .addCase(setNearbyOffers, (state, action) => {
+      const {nearbyOffers} = action.payload;
+      state.nearbyOffers = nearbyOffers;
+    })
+    .addCase(setOffer, (state, action) => {
+      const {offer} = action.payload;
+      state.offer = offer;
+    })
+    .addCase(setReviews, (state, action) => {
+      const {reviews} = action.payload;
+      state.reviews = reviews;
     })
     .addCase(setActiveMapPoint, (state, action) => {
       const {activeMapPoint} = action.payload;
