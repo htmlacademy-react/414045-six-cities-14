@@ -1,5 +1,5 @@
-const COUNT_OFFERS: number = 243;
 const RATING_COEFFICIENT: number = 20;
+const SHOW_TIME_ERROR = 2000;
 
 
 enum CityName {
@@ -114,7 +114,7 @@ enum AuthorizationStatus {
 }
 
 export {
-  COUNT_OFFERS,
+  SHOW_TIME_ERROR,
   RATING_COEFFICIENT,
   DEFAULT_CITY,
   CITIES,
