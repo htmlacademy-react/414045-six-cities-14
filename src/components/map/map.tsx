@@ -4,6 +4,7 @@ import useMap from '../../hooks/use-map.tsx';
 import {Icon, LatLng, layerGroup, Marker} from 'leaflet';
 import {CityName} from '../../consts.ts';
 import {useAppSelector} from '../../hooks/hooks.ts';
+import {getActiveMapPoint} from '../../store/offer/offer-selector.ts';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -40,7 +41,7 @@ export default function Map({className, city, offers}: MapProps): ReactElement {
   const points = getCityPoints(city.name, offers);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
-  const activePoint = useAppSelector((store) => store.activeMapPoint);
+  const activePoint = useAppSelector(getActiveMapPoint);
   const markers = useRef<Marker[]>([]);
 
   useEffect(() => {

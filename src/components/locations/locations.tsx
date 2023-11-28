@@ -1,14 +1,14 @@
 import {ReactElement, SyntheticEvent} from 'react';
 import {useAppDispatch} from '../../hooks/hooks.ts';
-import {selectCity} from '../../storage/action.ts';
 import {CITIES} from '../../consts.ts';
 import {AppDispatch} from '../../types/state.ts';
 import {City} from '../../types/offer.ts';
+import {setCity} from '../../store/offer/offer-slice.ts';
 
 function getOnChangeCityHandler(city: City, dispatch: AppDispatch) {
   return (evt: SyntheticEvent) => {
     evt.preventDefault();
-    dispatch(selectCity({selectedCity: city}));
+    dispatch(setCity({city: city}));
   };
 }
 

@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../consts.ts';
 import {useAppDispatch} from '../../hooks/hooks.ts';
-import {logoutAction} from '../../storage/api-action.ts';
+import {logoutAction} from '../../store/api-action.ts';
 
 export default function HeaderNavAuthUser() {
   const dispatch = useAppDispatch();

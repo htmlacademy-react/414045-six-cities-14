@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app.tsx';
 import {Provider} from 'react-redux';
-import {store} from './storage';
+import {store} from './store';
 import ErrorMessage from './components/error-message/error-message.tsx';
 
 const root = ReactDOM.createRoot(

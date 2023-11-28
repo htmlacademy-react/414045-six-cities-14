@@ -9,7 +9,7 @@ import PrivateRoute from '../private-route/private-route.tsx';
 import Favorites from '../../pages/favorites/favorites.tsx';
 import {ReactElement, useEffect} from 'react';
 import {useAppDispatch} from '../../hooks/hooks.ts';
-import {loadOffersAction, checkAuthAction} from '../../storage/api-action.ts';
+import {checkAuthAction, loadOffersAction} from '../../store/api-action.ts';
 import HistoryRouter from '../../history-router/history-router.tsx';
 import {browserHistory} from '../../browser-history.ts';
 

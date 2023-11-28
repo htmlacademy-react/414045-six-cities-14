@@ -1,7 +1,7 @@
 import {ChangeEvent, ReactElement, SyntheticEvent, useState} from 'react';
 import {useAppDispatch} from '../../hooks/hooks.ts';
 import {AuthData} from '../../types/user.ts';
-import {loginAction} from '../../storage/api-action.ts';
+import {loginAction} from '../../store/api-action.ts';
 
 function Login(): ReactElement {
   const [formData, setFormData] = useState<AuthData>({email: '', password: ''});

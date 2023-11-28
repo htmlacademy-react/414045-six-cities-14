@@ -1,9 +1,9 @@
 import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import {getToken} from './services/token-service.ts';
 import {StatusCodes} from 'http-status-codes';
-import {store} from './storage';
-import {setError} from './storage/action.ts';
-import {clearError} from './storage/api-action.ts';
+import {store} from './store';
+import {clearError, setError} from './store/error/error-slice.ts';
+import {SHOW_TIME_ERROR} from './consts.ts';
 
 type DetailErrorType = {
   error: string;
@@ -41,7 +41,12 @@ export const createApi = (): AxiosInstance => {
       const detailMessage = (error.response.data);
 
       store.dispatch(setError({error: detailMessage.error}));
-      store.dispatch(clearError());
+
+      setTimeout(() => {
+        store.dispatch(clearError());
+      }, SHOW_TIME_ERROR);
+
+      throw error;
     }
   });
 

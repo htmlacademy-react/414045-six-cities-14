@@ -113,6 +113,14 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
+enum StoreNameSpace {
+  Auth = 'AUTH',
+  Error = 'ERROR',
+  Loading = 'LOADING',
+  Offers = 'OFFERS',
+  Routing = 'ROUTING'
+}
+
 export {
   SHOW_TIME_ERROR,
   RATING_COEFFICIENT,
@@ -124,5 +132,6 @@ export {
   APIRoute,
   AuthorizationStatus,
   SortOption,
-  CityName
+  CityName,
+  StoreNameSpace
 };

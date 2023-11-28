@@ -3,10 +3,11 @@ import CitiesPlaces from '../../components/places/cities-places/cities-places.ts
 import Map from '../../components/map/map.tsx';
 import {useAppSelector} from '../../hooks/hooks.ts';
 import {getLocationOffers} from '../../services/offer-service.ts';
+import {getCity, getOffers} from '../../store/offer/offer-selector.ts';
 
 function Main() {
-  const offers = useAppSelector((store) => store.offers);
-  const city = useAppSelector((store) => store.city);
+  const offers = useAppSelector(getOffers);
+  const city = useAppSelector(getCity);
   const cityOffers = getLocationOffers(city, offers);
 
   return (

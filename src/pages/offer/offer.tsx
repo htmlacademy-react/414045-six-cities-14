@@ -10,7 +10,8 @@ import NotFound from '../not-found/not-found.tsx';
 import Map from '../../components/map/map.tsx';
 import {getRatingStyle} from '../../utils.ts';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks.ts';
-import {loadNearbyOffersAction, loadOfferAction, loadReviewsAction} from '../../storage/api-action.ts';
+import {loadNearbyOffersAction, loadOfferAction, loadReviewsAction} from '../../store/api-action.ts';
+import {getNearbyOffers, getOffer, getReviews} from '../../store/offer/offer-selector.ts';
 
 function PremiumMark(): ReactElement {
   return (
@@ -25,9 +26,9 @@ function Offer(): ReactElement {
   const params = useParams();
   const offerId = Number(params.id);
 
-  const offer = useAppSelector((store) => store.offer);
-  const nearbyOffers = useAppSelector((store) => store.nearbyOffers);
-  const reviews = useAppSelector((store) => store.reviews);
+  const offer = useAppSelector(getOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
+  const reviews = useAppSelector(getReviews);
   const offers = [...nearbyOffers];
 
   if (offer !== null) {
