@@ -4,9 +4,10 @@ import {AppRoute, AuthorizationStatus} from '../../consts.ts';
 import {useAppSelector} from '../../hooks/hooks.ts';
 import HeaderNavAuthUser from './header-nav-auth-user.tsx';
 import HeaderNavNotAuthUser from './header-nav-not-auth-user.tsx';
+import {getAuthorizationStatus} from '../../store/auth/auth-selector.ts';
 
 function Header():ReactElement {
-  const authorizationStatus = useAppSelector((store) => store.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <header className="header">

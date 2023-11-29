@@ -4,6 +4,7 @@ import {Review} from '../../../types/review.ts';
 import OfferReview from '../offer-review/offer-review.tsx';
 import {useAppSelector} from '../../../hooks/hooks.ts';
 import {AuthorizationStatus} from '../../../consts.ts';
+import {getAuthorizationStatus} from '../../../store/auth/auth-selector.ts';
 
 type OfferReviewsProps = {
   offerId: number;
@@ -11,7 +12,7 @@ type OfferReviewsProps = {
 }
 
 function OfferReviews({offerId, reviews}: OfferReviewsProps):ReactElement {
-  const auth = useAppSelector((store) => store.authorizationStatus);
+  const auth = useAppSelector(getAuthorizationStatus);
 
   return (
     <section className="offer__reviews reviews">

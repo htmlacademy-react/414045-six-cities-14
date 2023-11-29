@@ -1,7 +1,8 @@
 import {ChangeEvent, SyntheticEvent, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../hooks/hooks.ts';
-import {addReviewAction} from '../../../storage/api-action.ts';
+import {addReviewAction} from '../../../store/api-action.ts';
 import {NewReviewData} from '../../../types/review.ts';
+import {getAuthInfo} from '../../../store/auth/auth-selector.ts';
 
 type FormData = {
     rating: string;
@@ -14,7 +15,7 @@ type OfferReviewFormProps = {
 
 function OfferReviewForm({offerId}: OfferReviewFormProps) {
   const dispatch = useAppDispatch();
-  const authInfo = useAppSelector((store) => store.authInfo);
+  const authInfo = useAppSelector(getAuthInfo);
   const [formData, setFormData] = useState<FormData>({
     rating: '',
     review: ''

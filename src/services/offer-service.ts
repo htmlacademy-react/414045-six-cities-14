@@ -1,4 +1,4 @@
-import {City, Offer} from '../types/offer.ts';
+import {ActiveMapPoint, City, Offer} from '../types/offer.ts';
 import {SortOption} from '../consts.ts';
 
 function getLocationOffers(city: City, offers: Offer[]) {
@@ -33,4 +33,8 @@ function sortOffers(offers: Offer[], sortType: string) {
   }
 }
 
-export {getLocationOffers, sortOffers};
+function getOfferMapPoint(offers: Offer[], offerId: number): ActiveMapPoint {
+  return offers.find((offer: Offer) => offer.id === offerId)?.location;
+}
+
+export {getLocationOffers, sortOffers, getOfferMapPoint};

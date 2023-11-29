@@ -4,6 +4,7 @@ import Footer from '../../components/footer/footer.tsx';
 import FavoritesLocations from '../../components/favorites/favorites-locations/favorites-locations.tsx';
 import {useAppSelector} from '../../hooks/hooks.ts';
 import {CityName} from '../../consts.ts';
+import {getOffers} from '../../store/offer/offer-selector.ts';
 
 type Favorites = {
     cityName: CityName;
@@ -30,7 +31,7 @@ function prepareFavoritesByCity(offers: Offer[]): Favorites[] {
 }
 
 function Favorites(): ReactElement {
-  const offers = useAppSelector((store) => store.offers);
+  const offers = useAppSelector(getOffers);
   const favoritesByCity = prepareFavoritesByCity(offers);
 
   return (
