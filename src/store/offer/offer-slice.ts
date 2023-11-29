@@ -1,9 +1,10 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, current, PayloadAction} from '@reduxjs/toolkit';
 import {CITIES, DEFAULT_CITY, StoreNameSpace} from '../../consts.ts';
 import {ActiveMapPoint, City, Offer} from '../../types/offer.ts';
 import {Review} from '../../types/review.ts';
 import {
-  addReviewAction,
+  toggleFavoriteOfferAction,
+  addReviewAction, loadFavoriteOffersAction,
   loadNearbyOffersAction,
   loadOfferAction,
   loadOffersAction,
@@ -12,6 +13,7 @@ import {
 
 type OfferReducerType = {
   offers: Offer[];
+  favoriteOffers: Offer[];
   nearbyOffers: Offer[];
   offer: Offer | null;
   reviews: Review[];
@@ -21,6 +23,7 @@ type OfferReducerType = {
 
 const initialState: OfferReducerType = {
   offers: [],
+  favoriteOffers: [],
   offer: null,
   nearbyOffers: [],
   reviews: [],
@@ -70,6 +73,22 @@ export const offerSlice = createSlice({
       })
       .addCase(loadNearbyOffersAction.fulfilled, (state, action) => {
         state.nearbyOffers = action.payload;
+      })
+      .addCase(loadFavoriteOffersAction.fulfilled, (state, action) => {
+        state.favoriteOffers = action.payload;
+      })
+      .addCase(toggleFavoriteOfferAction.fulfilled, (state, action) => {
+        const updatedOffer = action.payload;
+        let favoriteOffers = current(state.favoriteOffers);
+        const favoriteOffersIncludeUpdatedOffer = favoriteOffers.find((offer) => offer.id === updatedOffer.id) !== undefined;
+
+        if (updatedOffer.isFavorite && !favoriteOffersIncludeUpdatedOffer) {
+          favoriteOffers = [...favoriteOffers, updatedOffer];
+        } else {
+          favoriteOffers = favoriteOffers.filter((offer) => updatedOffer.id !== offer.id);
+        }
+
+        state.favoriteOffers = favoriteOffers;
       })
       .addCase(addReviewAction.fulfilled, (state, action) => {
         state.reviews = action.payload;

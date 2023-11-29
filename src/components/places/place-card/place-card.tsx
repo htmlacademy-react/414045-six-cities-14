@@ -1,16 +1,26 @@
-import {Fragment, ReactElement} from 'react';
+import {Fragment, ReactElement, useState} from 'react';
 import {Offer} from '../../../types/offer.ts';
 import {generatePath, Link} from 'react-router-dom';
 import PremiumMark from '../../premium-mark/premium-mark.tsx';
 import {getRatingStyle} from '../../../utils.ts';
 import {AppRoute} from '../../../consts.ts';
 import classNames from 'classnames';
+import {useAppDispatch} from '../../../hooks/hooks.ts';
+import {toggleFavoriteOfferAction} from '../../../store/api-action.ts';
 
 type PlaceCardProps = {
   offer: Offer;
 }
 
 function PlaceCard({offer}: PlaceCardProps): ReactElement {
+  const dispatch = useAppDispatch();
+  const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
+
+  const onClickFavoriteButton = () => {
+    setIsFavorite(!isFavorite);
+    dispatch(toggleFavoriteOfferAction({offerId: offer.id, status: Number(!isFavorite)}));
+  };
+
   return (
     <Fragment>
       {offer.isPremium ? <PremiumMark/> : ''}
@@ -28,8 +38,8 @@ function PlaceCard({offer}: PlaceCardProps): ReactElement {
           <button className={classNames(
             'place-card__bookmark-button',
             'button',
-            {'place-card__bookmark-button--active': offer.isFavorite}
-          )} type="button"
+            {'place-card__bookmark-button--active': isFavorite}
+          )} type="button" onClick={onClickFavoriteButton}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
