@@ -7,3 +7,4 @@ export const getNearbyOffers = (state: State) => state[StoreNameSpace.Offers].ne
 export const getOffer = (state: State) => state[StoreNameSpace.Offers].offer;
 export const getCity = (state: State) => state[StoreNameSpace.Offers].city;
 export const getReviews = (state: State) => state[StoreNameSpace.Offers].reviews;
+export const getFavoriteOffers = (state: State) => state[StoreNameSpace.Offers].favoriteOffers;

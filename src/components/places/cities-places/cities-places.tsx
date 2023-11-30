@@ -1,16 +1,17 @@
 import {ReactElement, SyntheticEvent, useEffect, useState} from 'react';
 import PlacesOptions from '../places-options/places-options.tsx';
 import PlaceCardList from '../place-card-list/place-card-list.tsx';
-import {Offer} from '../../../types/offer.ts';
-import {DEFAULT_SORTING_OPTION, CityName, SortOption} from '../../../consts.ts';
+import {City, Offer} from '../../../types/offer.ts';
+import {DEFAULT_SORTING_OPTION, SortOption} from '../../../consts.ts';
 import {sortOffers} from '../../../services/offer-service.ts';
+import Map from '../../map/map.tsx';
 
 type CitiesPlacesProps = {
-  cityName: CityName;
+  city: City;
   offers: Offer[];
 }
 
-function CitiesPlaces({offers, cityName}: CitiesPlacesProps): ReactElement {
+function CitiesPlaces({offers, city}: CitiesPlacesProps): ReactElement {
   const [sortedOffers, setSortedOffers] = useState(offers);
   const [isOpenSortPopup, setIsOpenSortPopup] = useState<boolean>(false);
   const [currentSortingOption, setCurrentSortingOption] = useState<SortOption>(DEFAULT_SORTING_OPTION);
@@ -30,21 +31,26 @@ function CitiesPlaces({offers, cityName}: CitiesPlacesProps): ReactElement {
   };
 
   return (
-    <section className="cities__places places">
-      <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{sortedOffers.length} places to stay in {cityName}</b>
-      <form className="places__sorting" action="#" method="get">
-        <span className="places__sorting-caption">Sort by</span>
-        <span className="places__sorting-type" tabIndex={0} onClick={() => setIsOpenSortPopup(!isOpenSortPopup)}>
-          {currentSortingOption}
-          <svg className="places__sorting-arrow" width="7" height="4">
-            <use xlinkHref="#icon-arrow-select"></use>
-          </svg>
-        </span>
-        <PlacesOptions isOpen={isOpenSortPopup} onChangeOptionHandler={onChangeOfferOptionHandler}/>
-      </form>
-      <PlaceCardList offers={sortedOffers}/>
-    </section>
+    <div className="cities__places-container container">
+      <section className="cities__places places">
+        <h2 className="visually-hidden">Places</h2>
+        <b className="places__found">{sortedOffers.length} places to stay in {city.name}</b>
+        <form className="places__sorting" action="#" method="get">
+          <span className="places__sorting-caption">Sort by</span>
+          <span className="places__sorting-type" tabIndex={0} onClick={() => setIsOpenSortPopup(!isOpenSortPopup)}>
+            {currentSortingOption}
+            <svg className="places__sorting-arrow" width="7" height="4">
+              <use xlinkHref="#icon-arrow-select"></use>
+            </svg>
+          </span>
+          <PlacesOptions isOpen={isOpenSortPopup} onChangeOptionHandler={onChangeOfferOptionHandler}/>
+        </form>
+        <PlaceCardList offers={sortedOffers}/>
+      </section>
+      <div className="cities__right-section">
+        <Map className={'cities__map map'} city={city} offers={offers}/>
+      </div>
+    </div>
   );
 }
 

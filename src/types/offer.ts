@@ -34,3 +34,8 @@ export type Offer = {
 }
 
 export type OfferId = number;
+
+export type FavoriteToggleData = {
+  offerId: OfferId;
+  status: number;
+}
