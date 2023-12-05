@@ -21,7 +21,7 @@ function Login(): ReactElement {
   };
 
   return (
-    <div className="page page--gray page--login">
+    <div className="page page--gray page--login" data-testid="login-page">
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">

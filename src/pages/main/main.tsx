@@ -13,7 +13,7 @@ function Main() {
   const isEmptyCityOffers = Boolean(!cityOffers.length);
 
   return (
-    <div className="page page--gray page--main">
+    <div className="page page--gray page--main" data-testid="main-page">
       <main className={classNames('page__main', 'page__main--index', {'page__main--index-empty': isEmptyCityOffers})}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

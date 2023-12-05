@@ -3,16 +3,11 @@ import {Offer} from '../../types/offer.ts';
 import Footer from '../../components/footer/footer.tsx';
 import FavoritesLocations from '../../components/favorites/favorites-locations/favorites-locations.tsx';
 import {useAppSelector} from '../../hooks/hooks.ts';
-import {CityName} from '../../consts.ts';
+import {Favorites as FavoritesType} from '../../types/offer.ts';
 import {getFavoriteOffers} from '../../store/offer/offer-selector.ts';
 
-type Favorites = {
-    cityName: CityName;
-    offers: Offer[];
-}
-
-function prepareFavoritesByCity(offers: Offer[]): Favorites[] {
-  const favoritesByCity: Favorites[] = [];
+function prepareFavoritesByCity(offers: Offer[]): FavoritesType[] {
+  const favoritesByCity: FavoritesType[] = [];
 
   offers.forEach((offer: Offer) => {
     const favorites = favoritesByCity.find((favoritesFromCity) => favoritesFromCity.cityName === offer.city.name);
@@ -35,7 +30,7 @@ function Favorites(): ReactElement {
   const favoritesByCity = prepareFavoritesByCity(offers);
 
   return (
-    <div className="page">
+    <div className="page" data-testid="favorites-page">
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">

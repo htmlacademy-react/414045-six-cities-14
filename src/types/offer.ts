@@ -39,3 +39,8 @@ export type FavoriteToggleData = {
   offerId: OfferId;
   status: number;
 }
+
+export type Favorites = {
+  cityName: CityName;
+  offers: Offer[];
+}

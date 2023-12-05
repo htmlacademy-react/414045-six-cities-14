@@ -10,8 +10,6 @@ import Favorites from '../../pages/favorites/favorites.tsx';
 import {ReactElement, useEffect} from 'react';
 import {useAppDispatch} from '../../hooks/hooks.ts';
 import {checkAuthAction, loadFavoriteOffersAction, loadOffersAction} from '../../store/api-action.ts';
-import HistoryRouter from '../../history-router/history-router.tsx';
-import {browserHistory} from '../../browser-history.ts';
 
 function App(): ReactElement {
   const dispatch = useAppDispatch();
@@ -23,22 +21,20 @@ function App(): ReactElement {
   }, [dispatch]);
 
   return (
-    <HistoryRouter history={browserHistory}>
-      <Routes>
-        <Route path={AppRoute.Main} element={<Layout/>}>
-          <Route index element={<Main/>}/>
-          <Route path={AppRoute.Login} element={<Login/>}/>
-          <Route path={AppRoute.Offer} element={<Offer/>}/>
-          <Route path={AppRoute.Favorites} element={
-            <PrivateRoute>
-              <Favorites/>
-            </PrivateRoute>
-          }
-          />
-          <Route path='*' element={<NotFound/>}/>
-        </Route>
-      </Routes>
-    </HistoryRouter>
+    <Routes>
+      <Route path={AppRoute.Main} element={<Layout/>}>
+        <Route index element={<Main/>}/>
+        <Route path={AppRoute.Login} element={<Login/>}/>
+        <Route path={AppRoute.Offer} element={<Offer/>}/>
+        <Route path={AppRoute.Favorites} element={
+          <PrivateRoute>
+            <Favorites/>
+          </PrivateRoute>
+        }
+        />
+        <Route path='*' element={<NotFound/>}/>
+      </Route>
+    </Routes>
   );
 }
 

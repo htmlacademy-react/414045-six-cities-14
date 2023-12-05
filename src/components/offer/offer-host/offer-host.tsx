@@ -14,7 +14,7 @@ function OfferHost({offer}:OfferHostProps): ReactElement {
           <img className="offer__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74" alt="Host avatar"/>
         </div>
         <span className="offer__user-name">{offer.host.name}</span>
-        {offer.host.isPro ? <span className="offer__user-status">Pro</span> : ''}
+        {offer.host.isPro ? <span className="offer__user-status" data-testid="is_pro">Pro</span> : ''}
       </div>
       <div className="offer__description">
         <p className="offer__text">
