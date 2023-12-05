@@ -1,23 +1,35 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {StoreNameSpace} from '../../consts.ts';
-import {loadOffersAction} from '../api-action.ts';
+import {LoadingStatus, StoreNameSpace} from '../../consts.ts';
+import {addReviewAction, loadOfferAction, loadOffersAction} from '../api-action.ts';
 
 type LoadingStateType = {
-  isLoading: boolean;
+    isLoading: boolean;
+    isLoadingForm: boolean;
+    loadingFormStatus: LoadingStatus;
 }
 
 const initialState: LoadingStateType = {
-  isLoading: false
+  isLoading: false,
+  isLoadingForm: false,
+  loadingFormStatus: LoadingStatus.None
 };
 
 export const loadingSlice = createSlice({
   name: StoreNameSpace.Loading,
   initialState,
   reducers: {
-    setLoadingStatus: (state, action: PayloadAction<{isLoading: boolean}>) => {
+    setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
       const {isLoading} = action.payload;
       state.isLoading = isLoading;
-    }
+    },
+    setIsLoadingForm: (state, action: PayloadAction<{ isLoadingForm: boolean }>) => {
+      const {isLoadingForm} = action.payload;
+      state.isLoadingForm = isLoadingForm;
+    },
+    setLoadingFormStatus: (state, action: PayloadAction<{ loadingFormStatus: LoadingStatus }>) => {
+      const {loadingFormStatus} = action.payload;
+      state.loadingFormStatus = loadingFormStatus;
+    },
   },
   extraReducers(builder) {
     builder
@@ -29,8 +41,25 @@ export const loadingSlice = createSlice({
       })
       .addCase(loadOffersAction.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase(loadOfferAction.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(loadOfferAction.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(addReviewAction.pending, (state) => {
+        state.isLoadingForm = true;
+      })
+      .addCase(addReviewAction.fulfilled, (state) => {
+        state.isLoadingForm = false;
+        state.loadingFormStatus = LoadingStatus.Success;
+      })
+      .addCase(addReviewAction.rejected, (state) => {
+        state.isLoadingForm = false;
+        state.loadingFormStatus = LoadingStatus.Fail;
       });
   }
 });
 
-export const {setLoadingStatus} = loadingSlice.actions;
+export const {setIsLoading, setIsLoadingForm, setLoadingFormStatus} = loadingSlice.actions;

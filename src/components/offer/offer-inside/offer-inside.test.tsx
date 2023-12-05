@@ -11,6 +11,6 @@ describe('Component: OfferInside', () => {
     render(<OfferInside offer={mockOffer}/>);
 
     expect(screen.getByText(titleText)).toBeInTheDocument();
-    expect(screen.getAllByTestId('offer__inside-item').length).toEqual(goodsCount);
+    expect(screen.queryAllByTestId('offer__inside-item').length).toEqual(goodsCount);
   });
 });

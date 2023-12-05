@@ -2,6 +2,7 @@ import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import {getToken} from './services/token-service.ts';
 import {StatusCodes} from 'http-status-codes';
 import {toast} from 'react-toastify';
+import {APIRoute} from './consts.ts';
 
 type DetailErrorType = {
   error: string;
@@ -16,7 +17,8 @@ const ErrorRuleForStatusCode: Record<number, boolean> = {
   [StatusCodes.UNAUTHORIZED]: true
 };
 
-const shouldShowError = (response: AxiosResponse) => !!ErrorRuleForStatusCode[response.status];
+const shouldShowError = (response: AxiosResponse) => ErrorRuleForStatusCode[response.status]
+  && !(response.config.url === APIRoute.Login && response.config.method === 'get');
 
 export const createApi = (): AxiosInstance => {
   const api = axios.create({

@@ -1,5 +1,6 @@
 import {ActiveMapPoint, City, Offer} from '../types/offer.ts';
 import {SortOption} from '../consts.ts';
+import {Review} from "../types/review.ts";
 
 function getLocationOffers(city: City, offers: Offer[]) {
   return offers.filter((offer) => offer.city.name === city.name);
@@ -33,8 +34,12 @@ function sortOffers(offers: Offer[], sortType: string) {
   }
 }
 
+function sortOfferReviews(reviews: Review[]) {
+  return [...reviews].sort((a, b) => new Date(a.date) <= new Date(b.date) ? 1 : -1);
+}
+
 function getOfferMapPoint(offers: Offer[], offerId: number): ActiveMapPoint {
   return offers.find((offer: Offer) => offer.id === offerId)?.location;
 }
 
-export {getLocationOffers, sortOffers, getOfferMapPoint};
+export {getLocationOffers, sortOffers, getOfferMapPoint, sortOfferReviews};

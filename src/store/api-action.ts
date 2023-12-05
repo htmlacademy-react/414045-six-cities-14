@@ -28,6 +28,7 @@ export const loadOfferAction = createAsyncThunk<Offer, OfferId, {
 }>(
   'offers/loadOffer',
   async (offerId, {extra: api}) => {
+
     const {data} = await api.get<Offer>(`${APIRoute.Offers}/${offerId}`);
 
     return data;
@@ -138,5 +139,21 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIRoute.Logout);
     deleteToken();
     dispatch(redirectToRoute(AppRoute.Login));
+  }
+);
+
+export const loadMainPageDataAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+}>(
+  'load/mainPageDataPending',
+  async (_arg, {dispatch}) => {
+    dispatch(loadOffersAction());
+
+    const {payload} = await dispatch(checkAuthAction());
+
+    if (payload) {
+      dispatch(loadFavoriteOffersAction());
+    }
   }
 );
