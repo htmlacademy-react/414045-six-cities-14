@@ -8,7 +8,7 @@ type DetailErrorType = {
   error: string;
 }
 
-const BASE_URL = 'https://14.react.pages.academy/six-cities';
+const BASE_URL = 'https://14.design.pages.academy/six-cities';
 const DEFAULT_TIMEOUT = 5000;
 
 const ErrorRuleForStatusCode: Record<number, boolean> = {

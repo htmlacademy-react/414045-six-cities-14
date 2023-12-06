@@ -8,7 +8,7 @@ import {LoadingStateType} from '../../../types/loading.ts';
 describe('Component: OfferReviewForm', () => {
   it('should render correctly', () => {
     const mockAuthInfo = makeFakeAuthInfo();
-    const {withStoreComponent} = withStore(<OfferReviewForm offerId={1}/>, {
+    const {withStoreComponent} = withStore(<OfferReviewForm offerId={'test'}/>, {
       AUTH: {authInfo: mockAuthInfo} as AuthState,
       LOADING: {isLoadingForm: false} as LoadingStateType,
     });

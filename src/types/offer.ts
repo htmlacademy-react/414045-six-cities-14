@@ -34,7 +34,7 @@ export type Offer = {
   type: string;
 }
 
-export type OfferId = number;
+export type OfferId = string;
 
 export type FavoriteToggleData = {
   offerId: OfferId;

@@ -13,7 +13,7 @@ function PrivateRoute(props: PrivateRouteProps): ReactElement {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
-    authorizationStatus === AuthorizationStatus.Auth ? children : <Navigate to={AppRoute.Login}/>
+    authorizationStatus !== AuthorizationStatus.NoAuth ? children : <Navigate to={AppRoute.Login}/>
   );
 }
 

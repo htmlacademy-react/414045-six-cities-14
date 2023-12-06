@@ -3,13 +3,15 @@ import {useAppDispatch, useAppSelector} from '../../hooks/hooks.ts';
 import {AuthData} from '../../types/user.ts';
 import {loginAction} from '../../store/api-action.ts';
 import Layout from '../../components/layout/layout.tsx';
-import {AppRoute, AuthorizationStatus, DEFAULT_CITY} from '../../consts.ts';
+import {AppRoute, AuthorizationStatus} from '../../consts.ts';
 import {Link} from 'react-router-dom';
 import {getAuthorizationStatus} from '../../store/auth/auth-selector.ts';
 import {redirectToRoute} from '../../store/actions.ts';
 import classNames from 'classnames';
 
 import './login.css';
+import {getRandomCity} from '../../services/offer-service.ts';
+import {setCity} from '../../store/offer/offer-slice.ts';
 
 function Login(): ReactElement {
   const [formData, setFormData] = useState<AuthData>({email: '', password: ''});
@@ -48,7 +50,11 @@ function Login(): ReactElement {
     dispatch(loginAction(formData));
   };
 
-  const location = DEFAULT_CITY;
+  const location = getRandomCity();
+
+  const clickCityButtonHandler = () => {
+    dispatch(setCity({city: location}));
+  };
 
   return (
     <Layout pageClassNames={'page page--gray page--login'}>
@@ -70,8 +76,8 @@ function Login(): ReactElement {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link className="locations__item-link" to={AppRoute.Main}>
-                <span>{location}</span>
+              <Link onClick={clickCityButtonHandler} className="locations__item-link" to={AppRoute.Main}>
+                <span>{location.name}</span>
               </Link>
             </div>
           </section>

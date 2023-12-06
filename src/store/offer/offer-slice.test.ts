@@ -204,7 +204,7 @@ describe('OfferSlice', () => {
       activeMapPoint: undefined
     };
 
-    const result = offerSlice.reducer(undefined, addReviewAction.fulfilled([review], '', {} as NewReviewData));
+    const result = offerSlice.reducer(undefined, addReviewAction.fulfilled(review, '', {} as NewReviewData));
 
     expect(result).toEqual(expectedState);
   });

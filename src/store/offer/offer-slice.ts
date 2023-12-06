@@ -3,12 +3,13 @@ import {CITIES, DEFAULT_CITY, StoreNameSpace} from '../../consts.ts';
 import {ActiveMapPoint, City, Offer, OfferReducerType} from '../../types/offer.ts';
 import {Review} from '../../types/review.ts';
 import {
-  toggleFavoriteOfferAction,
-  addReviewAction, loadFavoriteOffersAction,
+  addReviewAction,
+  loadFavoriteOffersAction,
   loadNearbyOffersAction,
   loadOfferAction,
   loadOffersAction,
-  loadReviewsAction
+  loadReviewsAction,
+  toggleFavoriteOfferAction
 } from '../api-action.ts';
 
 const initialState: OfferReducerType = {
@@ -81,7 +82,8 @@ export const offerSlice = createSlice({
         state.favoriteOffers = favoriteOffers;
       })
       .addCase(addReviewAction.fulfilled, (state, action) => {
-        state.reviews = action.payload;
+        const reviews = current(state.reviews);
+        state.reviews = [...reviews, action.payload];
       });
   }
 });

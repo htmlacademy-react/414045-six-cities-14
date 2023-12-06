@@ -64,9 +64,9 @@ const DEFAULT_CITY = CityName.Paris;
 
 enum SortOption {
     Popular = 'popular',
-    PriceLowToHigh = 'priceLowToHigh',
-    PriceHighToLow = 'priceHighToLow',
-    TopRatedFirst = 'topRatedFirst'
+    PriceLowToHigh = 'price: low to high',
+    PriceHighToLow = 'price: high to low',
+    TopRatedFirst = 'top rated first'
 }
 
 const SORTING_OPTIONS = [
