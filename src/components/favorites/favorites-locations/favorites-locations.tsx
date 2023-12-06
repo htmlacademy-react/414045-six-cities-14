@@ -1,6 +1,7 @@
 import {ReactElement} from 'react';
 import FavoritesCard from '../favorites-card/favorites-card.tsx';
-import Favorites from '../../../pages/favorites/favorites.tsx';
+import {Favorites} from '../../../types/offer.ts';
+
 
 type FavoritesLocationsProps = {
     favorites: Favorites;

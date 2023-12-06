@@ -46,10 +46,10 @@ function Offer(): ReactElement {
   }
 
   return (
-    <div className="page">
+    <div className="page" data-testid="offer-page">
       <main className="page__main page__main--offer">
         <section className="offer">
-          <OfferGallery/>
+          <OfferGallery offer={offer}/>
           <div className="offer__container container">
             <div className="offer__wrapper">
               {offer.isPremium ? <PremiumMark/> : ''}

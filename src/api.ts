@@ -1,9 +1,7 @@
 import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import {getToken} from './services/token-service.ts';
 import {StatusCodes} from 'http-status-codes';
-import {store} from './store';
-import {clearError, setError} from './store/error/error-slice.ts';
-import {SHOW_TIME_ERROR} from './consts.ts';
+import {toast} from 'react-toastify';
 
 type DetailErrorType = {
   error: string;
@@ -40,11 +38,7 @@ export const createApi = (): AxiosInstance => {
     if (error.response && shouldShowError(error.response)) {
       const detailMessage = (error.response.data);
 
-      store.dispatch(setError({error: detailMessage.error}));
-
-      setTimeout(() => {
-        store.dispatch(clearError());
-      }, SHOW_TIME_ERROR);
+      toast.warn(detailMessage.error);
 
       throw error;
     }
