@@ -1,6 +1,6 @@
 import {createSlice, current, PayloadAction} from '@reduxjs/toolkit';
 import {CITIES, DEFAULT_CITY, StoreNameSpace} from '../../consts.ts';
-import {ActiveMapPoint, City, Offer} from '../../types/offer.ts';
+import {ActiveMapPoint, City, Offer, OfferReducerType} from '../../types/offer.ts';
 import {Review} from '../../types/review.ts';
 import {
   toggleFavoriteOfferAction,
@@ -10,16 +10,6 @@ import {
   loadOffersAction,
   loadReviewsAction
 } from '../api-action.ts';
-
-type OfferReducerType = {
-  offers: Offer[];
-  favoriteOffers: Offer[];
-  nearbyOffers: Offer[];
-  offer: Offer | null;
-  reviews: Review[];
-  city: City;
-  activeMapPoint: ActiveMapPoint;
-}
 
 const initialState: OfferReducerType = {
   offers: [],

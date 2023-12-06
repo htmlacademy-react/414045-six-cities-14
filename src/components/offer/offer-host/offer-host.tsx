@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {Offer} from '../../../types/offer.ts';
-import classNames from "classnames";
+import classNames from 'classnames';
 
 type OfferHostProps = {
     offer: Offer;

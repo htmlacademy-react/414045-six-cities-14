@@ -4,8 +4,8 @@ import {CITIES} from '../../consts.ts';
 import {AppDispatch} from '../../types/state.ts';
 import {City} from '../../types/offer.ts';
 import {setCity} from '../../store/offer/offer-slice.ts';
-import {getCity} from "../../store/offer/offer-selector.ts";
-import classNames from "classnames";
+import {getCity} from '../../store/offer/offer-selector.ts';
+import classNames from 'classnames';
 
 function getOnChangeCityHandler(city: City, dispatch: AppDispatch) {
   return (evt: SyntheticEvent) => {

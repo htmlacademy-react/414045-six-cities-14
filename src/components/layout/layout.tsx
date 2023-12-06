@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import Header from '../header/header.tsx';
-import Spinner from '../spiner/spinner.tsx';
+import Spinner from '../spinner/spinner.tsx';
 import {useAppSelector} from '../../hooks/hooks.ts';
 import {getIsLoading as isLoadingSelector} from '../../store/loading/loading-selector.ts';
 

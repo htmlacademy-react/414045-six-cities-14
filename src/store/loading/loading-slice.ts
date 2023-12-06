@@ -1,12 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {LoadingStatus, StoreNameSpace} from '../../consts.ts';
 import {addReviewAction, loadOfferAction, loadOffersAction} from '../api-action.ts';
-
-type LoadingStateType = {
-    isLoading: boolean;
-    isLoadingForm: boolean;
-    loadingFormStatus: LoadingStatus;
-}
+import {LoadingStateType} from '../../types/loading.ts';
 
 const initialState: LoadingStateType = {
   isLoading: false,

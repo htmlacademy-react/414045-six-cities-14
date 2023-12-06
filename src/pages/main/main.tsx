@@ -18,7 +18,7 @@ function Main() {
 
   useEffect(() => {
     dispatch(loadOffersAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Layout pageClassNames={'page page--gray page--main'}>

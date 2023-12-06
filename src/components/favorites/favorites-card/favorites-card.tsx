@@ -2,10 +2,10 @@ import {ReactElement, useState} from 'react';
 import {Offer} from '../../../types/offer.ts';
 import PremiumMark from '../../premium-mark/premium-mark.tsx';
 import {Link} from 'react-router-dom';
-import {getRatingStyle} from '../../../utils.ts';
 import {useAppDispatch} from '../../../hooks/hooks.ts';
 import {toggleFavoriteOfferAction} from '../../../store/api-action.ts';
 import classNames from 'classnames';
+import {getRatingStyle} from '../../../utils/utils.ts';
 
 type FavoritesCardProps = {
   offer: Offer;

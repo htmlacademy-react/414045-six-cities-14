@@ -27,6 +27,7 @@ function CitiesPlaceCard({offer, offers}: CitiesPlaceCardProps): ReactElement {
       mouseOverHandler(offer.id);
     }}
     onMouseLeave={mouseOutHandler}
+    data-testid="cities-place-card"
     >
       <PlaceCard offer={offer}/>
     </article>

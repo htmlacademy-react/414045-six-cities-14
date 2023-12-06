@@ -34,7 +34,7 @@ function OfferReviewForm({offerId}: OfferReviewFormProps) {
       setFormData({rating: '', review: ''});
       dispatch(setLoadingFormStatus({loadingFormStatus: LoadingStatus.None}));
     }
-  }, [loadingFormStatus]);
+  }, [dispatch, loadingFormStatus]);
 
   const isSubmitActive = () => formData.rating.length !== 0 && formData.review.length > MIN_LENGTH_COMMENT;
 

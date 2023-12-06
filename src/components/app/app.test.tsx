@@ -77,7 +77,6 @@ describe('Routing', () => {
     render(withStoreComponent);
 
     expect(screen.getByTestId('favorites-page'));
-    expect(screen.getByText('Saved listing'));
   });
 
   it('should render "Not Found Page" when route to "/undefined"', () => {

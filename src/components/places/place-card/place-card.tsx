@@ -2,13 +2,13 @@ import {Fragment, ReactElement, useState} from 'react';
 import {Offer} from '../../../types/offer.ts';
 import {generatePath, Link} from 'react-router-dom';
 import PremiumMark from '../../premium-mark/premium-mark.tsx';
-import {getRatingStyle} from '../../../utils.ts';
 import {AppRoute, AuthorizationStatus} from '../../../consts.ts';
 import classNames from 'classnames';
 import {useAppDispatch, useAppSelector} from '../../../hooks/hooks.ts';
 import {toggleFavoriteOfferAction} from '../../../store/api-action.ts';
 import {getAuthorizationStatus} from '../../../store/auth/auth-selector.ts';
 import {redirectToRoute} from '../../../store/actions.ts';
+import {getRatingStyle} from '../../../utils/utils.ts';
 
 type PlaceCardProps = {
   offer: Offer;

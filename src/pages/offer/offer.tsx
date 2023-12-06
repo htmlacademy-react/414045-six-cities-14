@@ -8,7 +8,6 @@ import NearPlaces from '../../components/places/near-places/near-places.tsx';
 import {useParams} from 'react-router-dom';
 import NotFound from '../not-found/not-found.tsx';
 import Map from '../../components/map/map.tsx';
-import {getRatingStyle} from '../../utils.ts';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks.ts';
 import {
   loadNearbyOffersAction,
@@ -19,12 +18,13 @@ import {
 import {getNearbyOffers, getOffer, getReviews} from '../../store/offer/offer-selector.ts';
 import Layout from '../../components/layout/layout.tsx';
 import {getIsLoading as isLoadingSelector} from '../../store/loading/loading-selector.ts';
-import Spinner from '../../components/spiner/spinner.tsx';
+import Spinner from '../../components/spinner/spinner.tsx';
 import {AppRoute, AuthorizationStatus} from '../../consts.ts';
 import {redirectToRoute} from '../../store/actions.ts';
 import {getAuthorizationStatus} from '../../store/auth/auth-selector.ts';
 import classNames from 'classnames';
-import {setActiveMapPoint} from "../../store/offer/offer-slice.ts";
+import {setActiveMapPoint} from '../../store/offer/offer-slice.ts';
+import {getRatingStyle} from '../../utils/utils.ts';
 
 function PremiumMark(): ReactElement {
   return (
@@ -62,7 +62,7 @@ function Offer(): ReactElement {
       setIsFavorite(offer.isFavorite);
       dispatch(setActiveMapPoint({activeMapPoint: offer.location}));
     }
-  }, [offer]);
+  }, [dispatch, offer]);
 
   if (offer === null) {
     return isLoading ? <Spinner/> : <NotFound/>;
