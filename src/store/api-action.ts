@@ -28,6 +28,7 @@ export const loadOfferAction = createAsyncThunk<Offer, OfferId, {
 }>(
   'offers/loadOffer',
   async (offerId, {extra: api}) => {
+
     const {data} = await api.get<Offer>(`${APIRoute.Offers}/${offerId}`);
 
     return data;
@@ -86,14 +87,14 @@ export const toggleFavoriteOfferAction = createAsyncThunk<Offer, FavoriteToggleD
   }
 );
 
-export const addReviewAction = createAsyncThunk<Review[], NewReviewData, {
+export const addReviewAction = createAsyncThunk<Review, NewReviewData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'offers/addReview',
   async (review: NewReviewData, {extra: api}) => {
-    const {data} = await api.post<Review[]>(`${APIRoute.Comments}/${review.offerId}`, {comment: review.comment, rating: review.rating});
+    const {data} = await api.post<Review>(`${APIRoute.Comments}/${review.offerId}`, {comment: review.comment, rating: review.rating});
 
     return data;
   }
@@ -138,5 +139,21 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIRoute.Logout);
     deleteToken();
     dispatch(redirectToRoute(AppRoute.Login));
+  }
+);
+
+export const loadMainPageDataAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+}>(
+  'load/mainPageDataPending',
+  async (_arg, {dispatch}) => {
+    dispatch(loadOffersAction());
+
+    const {payload} = await dispatch(checkAuthAction());
+
+    if (payload) {
+      dispatch(loadFavoriteOffersAction());
+    }
   }
 );

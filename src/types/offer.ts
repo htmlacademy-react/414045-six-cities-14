@@ -1,5 +1,6 @@
 import {User} from './user.ts';
 import {CityName} from '../consts.ts';
+import {Review} from './review.ts';
 
 export type MapPoint = {
   latitude: number;
@@ -33,9 +34,24 @@ export type Offer = {
   type: string;
 }
 
-export type OfferId = number;
+export type OfferId = string;
 
 export type FavoriteToggleData = {
   offerId: OfferId;
   status: number;
+}
+
+export type Favorites = {
+  cityName: CityName;
+  offers: Offer[];
+}
+
+export type OfferReducerType = {
+  offers: Offer[];
+  favoriteOffers: Offer[];
+  nearbyOffers: Offer[];
+  offer: Offer | null;
+  reviews: Review[];
+  city: City;
+  activeMapPoint: ActiveMapPoint;
 }

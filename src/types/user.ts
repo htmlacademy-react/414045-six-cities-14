@@ -1,3 +1,5 @@
+import {AuthorizationStatus} from '../consts.ts';
+
 export type User = {
   avatarUrl: string;
   id: number;
@@ -20,6 +22,11 @@ export type UserInfo = {
   id: number;
   isPro: boolean;
   name: string;
+}
+
+export type AuthState = {
+  authorizationStatus: AuthorizationStatus;
+  authInfo: AuthInfo|undefined;
 }
 
 export type AuthData = {

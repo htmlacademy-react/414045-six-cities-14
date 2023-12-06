@@ -7,11 +7,13 @@ type NearPlacesProps = {
 }
 
 function NearPlaces({offers}: NearPlacesProps): ReactElement {
+  const preparedOffers = [...offers].slice(0, 3);
+
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
-        {offers.map((offer) => <NearPlaceCard key={offer.id} offer={offer}/>)}
+        {preparedOffers.map((offer) => <NearPlaceCard key={offer.id} offer={offer}/>)}
       </div>
     </section>
   );

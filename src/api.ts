@@ -1,15 +1,14 @@
 import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import {getToken} from './services/token-service.ts';
 import {StatusCodes} from 'http-status-codes';
-import {store} from './store';
-import {clearError, setError} from './store/error/error-slice.ts';
-import {SHOW_TIME_ERROR} from './consts.ts';
+import {toast} from 'react-toastify';
+import {APIRoute} from './consts.ts';
 
 type DetailErrorType = {
   error: string;
 }
 
-const BASE_URL = 'https://14.react.pages.academy/six-cities';
+const BASE_URL = 'https://14.design.pages.academy/six-cities';
 const DEFAULT_TIMEOUT = 5000;
 
 const ErrorRuleForStatusCode: Record<number, boolean> = {
@@ -18,7 +17,8 @@ const ErrorRuleForStatusCode: Record<number, boolean> = {
   [StatusCodes.UNAUTHORIZED]: true
 };
 
-const shouldShowError = (response: AxiosResponse) => !!ErrorRuleForStatusCode[response.status];
+const shouldShowError = (response: AxiosResponse) => ErrorRuleForStatusCode[response.status]
+  && !(response.config.url === APIRoute.Login && response.config.method === 'get');
 
 export const createApi = (): AxiosInstance => {
   const api = axios.create({
@@ -40,11 +40,7 @@ export const createApi = (): AxiosInstance => {
     if (error.response && shouldShowError(error.response)) {
       const detailMessage = (error.response.data);
 
-      store.dispatch(setError({error: detailMessage.error}));
-
-      setTimeout(() => {
-        store.dispatch(clearError());
-      }, SHOW_TIME_ERROR);
+      toast.warn(detailMessage.error);
 
       throw error;
     }

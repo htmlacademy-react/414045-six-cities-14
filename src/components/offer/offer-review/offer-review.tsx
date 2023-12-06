@@ -1,6 +1,6 @@
 import {Review} from '../../../types/review.ts';
 import dayjs from 'dayjs';
-import {getRatingStyle} from '../../../utils.ts';
+import {getRatingStyle} from '../../../utils/utils.ts';
 
 type OfferReviewProps = {
   review: Review;
@@ -27,7 +27,7 @@ function OfferReview({review}: OfferReviewProps) {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime={date.format('YYYY-MM-DD')}>{date.format('MMMM YYYY')}</time>
+        <time className="reviews__time" dateTime={date.format('YYYY-MM-DD')} data-testid="reviews_time">{date.format('MMMM YYYY')}</time>
       </div>
     </li>
   );
