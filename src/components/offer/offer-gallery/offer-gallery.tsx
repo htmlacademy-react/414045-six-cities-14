@@ -6,10 +6,12 @@ type OfferGalleryProps = {
 }
 
 function OfferGallery({offer}: OfferGalleryProps):ReactElement {
+  const images = offer.images.slice(0, 6);
+
   return (
     <div className="offer__gallery-container container" data-testid="offer-gallery-container">
       <div className="offer__gallery">
-        {offer.images.map((image) => {
+        {images.map((image) => {
           const alt = `Photo ${offer.type}`;
 
           return (

@@ -2,11 +2,13 @@ import {Fragment, ReactElement, useState} from 'react';
 import {Offer} from '../../../types/offer.ts';
 import {generatePath, Link} from 'react-router-dom';
 import PremiumMark from '../../premium-mark/premium-mark.tsx';
-import {getRatingStyle} from '../../../utils.ts';
-import {AppRoute} from '../../../consts.ts';
+import {AppRoute, AuthorizationStatus} from '../../../consts.ts';
 import classNames from 'classnames';
-import {useAppDispatch} from '../../../hooks/hooks.ts';
+import {useAppDispatch, useAppSelector} from '../../../hooks/hooks.ts';
 import {toggleFavoriteOfferAction} from '../../../store/api-action.ts';
+import {getAuthorizationStatus} from '../../../store/auth/auth-selector.ts';
+import {redirectToRoute} from '../../../store/actions.ts';
+import {getRatingStyle} from '../../../utils/utils.ts';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -15,8 +17,13 @@ type PlaceCardProps = {
 function PlaceCard({offer}: PlaceCardProps): ReactElement {
   const dispatch = useAppDispatch();
   const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
   const onClickFavoriteButton = () => {
+    if (authStatus !== AuthorizationStatus.Auth) {
+      dispatch(redirectToRoute(AppRoute.Login));
+    }
+
     setIsFavorite(!isFavorite);
     dispatch(toggleFavoriteOfferAction({offerId: offer.id, status: Number(!isFavorite)}));
   };

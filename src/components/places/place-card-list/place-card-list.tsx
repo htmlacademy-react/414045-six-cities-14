@@ -7,7 +7,7 @@ type PlaceCardListProps = {
 
 function PlaceCardList({offers}: PlaceCardListProps) {
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className="cities__places-list places__list tabs__content" data-testid="place-card-list">
       {offers.map((offer) => <CitiesPlaceCard key={offer.id} offer={offer} offers={offers}/>)}
     </div>
   );

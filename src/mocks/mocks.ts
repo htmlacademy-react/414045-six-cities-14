@@ -1,9 +1,10 @@
 import {AuthInfo, User} from '../types/user.ts';
 import {address, datatype, date, internet, lorem, name} from 'faker';
-import {City, MapPoint, Offer} from '../types/offer.ts';
-import {AuthorizationStatus, CITIES, CityName, DEFAULT_CITY, StoreNameSpace} from '../consts.ts';
+import {City, Favorites, MapPoint, Offer} from '../types/offer.ts';
+import {AuthorizationStatus, CITIES, CityName, DEFAULT_CITY, LoadingStatus, StoreNameSpace} from '../consts.ts';
 import {Review} from '../types/review.ts';
 import {State} from '../types/state.ts';
+import {prepareFavoritesByCity} from '../services/offer-service.ts';
 
 export const makeFakeAuthInfo = ():AuthInfo => ({
   id: datatype.number(100),
@@ -106,6 +107,8 @@ export const makeFakeStore = (initialState?: Partial<State>):State => ({
   },
   [StoreNameSpace.Loading]: {
     isLoading: false,
+    isLoadingForm: false,
+    loadingFormStatus: LoadingStatus.None
   },
   [StoreNameSpace.Offers]: {
     offers: [],
@@ -118,3 +121,23 @@ export const makeFakeStore = (initialState?: Partial<State>):State => ({
   },
   ...initialState ?? {},
 });
+
+export const makeFakeFavoritesList = ():Favorites[] => {
+  const offers = makeFakeOffers(4);
+
+  return prepareFavoritesByCity(offers);
+};
+
+export const makeFakeFavorites = (): Favorites => {
+  const city = makeFakeCity();
+  const offers = makeFakeOffers(3);
+
+  offers.forEach((offer) => {
+    offer.city = city;
+  });
+
+  return {
+    cityName: city.name,
+    offers: offers,
+  };
+};

@@ -83,6 +83,6 @@ export default function Map({className, city, offers}: MapProps): ReactElement {
   }, [map, activePoint]);
 
   return (
-    <section className={className} ref={mapRef}></section>
+    <section className={className} ref={mapRef} data-testid="map"></section>
   );
 }

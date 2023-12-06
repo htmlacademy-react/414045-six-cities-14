@@ -1,6 +1,6 @@
 import {Review} from '../../../types/review.ts';
 import dayjs from 'dayjs';
-import {getRatingStyle} from '../../../utils.ts';
+import {getRatingStyle} from '../../../utils/utils.ts';
 
 type OfferReviewProps = {
   review: Review;

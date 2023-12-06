@@ -1,14 +1,12 @@
 const RATING_COEFFICIENT: number = 20;
-const SHOW_TIME_ERROR = 2000;
-
 
 enum CityName {
-  Paris = 'Paris',
-  Cologne = 'Cologne',
-  Brussels = 'Brussels',
-  Amsterdam = 'Amsterdam',
-  Hamburg = 'Hamburg',
-  Dusseldorf = 'Dusseldorf',
+    Paris = 'Paris',
+    Cologne = 'Cologne',
+    Brussels = 'Brussels',
+    Amsterdam = 'Amsterdam',
+    Hamburg = 'Hamburg',
+    Dusseldorf = 'Dusseldorf',
 }
 
 const CITIES = [
@@ -65,10 +63,10 @@ const CITIES = [
 const DEFAULT_CITY = CityName.Paris;
 
 enum SortOption {
-  Popular = 'popular',
-  PriceLowToHigh = 'priceLowToHigh',
-  PriceHighToLow = 'priceHighToLow',
-  TopRatedFirst = 'topRatedFirst'
+    Popular = 'popular',
+    PriceLowToHigh = 'priceLowToHigh',
+    PriceHighToLow = 'priceHighToLow',
+    TopRatedFirst = 'topRatedFirst'
 }
 
 const SORTING_OPTIONS = [
@@ -93,36 +91,40 @@ const SORTING_OPTIONS = [
 const DEFAULT_SORTING_OPTION = SortOption.Popular;
 
 enum AppRoute {
-  Main = '/',
-  Login = '/login',
-  Offer = '/offer/:id',
-  Favorites = '/favorites'
+    Main = '/',
+    Login = '/login',
+    Offer = '/offer/:id',
+    Favorites = '/favorites'
 }
 
 enum APIRoute {
-  Offers = '/offers',
-  Favorite = '/favorite',
-  Comments = '/comments',
-  Login = '/login',
-  Logout = '/logout'
+    Offers = '/offers',
+    Favorite = '/favorite',
+    Comments = '/comments',
+    Login = '/login',
+    Logout = '/logout'
 }
 
 enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN'
+    Auth = 'AUTH',
+    NoAuth = 'NO_AUTH',
+    Unknown = 'UNKNOWN'
 }
 
 enum StoreNameSpace {
-  Auth = 'AUTH',
-  Error = 'ERROR',
-  Loading = 'LOADING',
-  Offers = 'OFFERS',
-  Routing = 'ROUTING'
+    Auth = 'AUTH',
+    Loading = 'LOADING',
+    Offers = 'OFFERS',
+    Routing = 'ROUTING'
+}
+
+enum LoadingStatus {
+    Success = 'SUCCESS',
+    Fail = 'FAIL',
+    None = 'NONE',
 }
 
 export {
-  SHOW_TIME_ERROR,
   RATING_COEFFICIENT,
   DEFAULT_CITY,
   CITIES,
@@ -133,5 +135,6 @@ export {
   AuthorizationStatus,
   SortOption,
   CityName,
-  StoreNameSpace
+  StoreNameSpace,
+  LoadingStatus
 };

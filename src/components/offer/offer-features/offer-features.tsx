@@ -12,10 +12,10 @@ function OfferFeatures({offer}: OfferFeaturesProps): ReactElement {
         {offer.type}
       </li>
       <li className="offer__feature offer__feature--bedrooms">
-        {offer.bedrooms} Bedrooms
+        {offer.bedrooms} {offer.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}
       </li>
       <li className="offer__feature offer__feature--adults">
-        Max {offer.maxAdults} adults
+        Max {offer.maxAdults} {offer.maxAdults > 1 ? 'adults' : 'adult'}
       </li>
     </ul>
   );

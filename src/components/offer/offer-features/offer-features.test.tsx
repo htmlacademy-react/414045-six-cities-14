@@ -6,8 +6,8 @@ describe('Component: OfferFeatures', () => {
   it('should render correctly', () => {
     const mockOffer = makeFakeOffer();
     const expectTypeText = mockOffer.type;
-    const expectBedroomsText = `${mockOffer.bedrooms} Bedrooms`;
-    const expectMaxAdultsText = `Max ${mockOffer.maxAdults} adults`;
+    const expectBedroomsText = mockOffer.bedrooms > 1 ? `${mockOffer.bedrooms} Bedrooms` : `${mockOffer.bedrooms} Bedroom`;
+    const expectMaxAdultsText = mockOffer.maxAdults > 1 ? `Max ${mockOffer.maxAdults} adults` : `Max ${mockOffer.maxAdults} adult`;
 
     render(<OfferFeatures offer={mockOffer}/>);
 
