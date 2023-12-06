@@ -37,18 +37,18 @@ function PremiumMark(): ReactElement {
 function Offer(): ReactElement {
   const dispatch = useAppDispatch();
   const params = useParams();
-  const offerId = Number(params.id);
+  const offerId = params.id ?? '';
 
   const offer = useAppSelector(getOffer);
   const nearbyOffers = useAppSelector(getNearbyOffers);
   const reviews = useAppSelector(getReviews);
   const isLoading = useAppSelector(isLoadingSelector);
   const authStatus = useAppSelector(getAuthorizationStatus);
-  const offers = [...nearbyOffers];
+  const mapOffers = [...nearbyOffers].slice(0, 3);
   const [isFavorite, setIsFavorite] = useState(false);
 
   if (offer !== null) {
-    offers.push(offer);
+    mapOffers.push(offer);
   }
 
   useEffect(() => {
@@ -115,7 +115,7 @@ function Offer(): ReactElement {
               </div>
             </div>
             <section className="offer__map map">
-              <Map className={'offer__map map'} offers={offers} city={offer.city}/>
+              <Map className={'offer__map map'} offers={mapOffers} city={offer.city}/>
             </section>
           </section>
           <div className="container">

@@ -9,7 +9,7 @@ import {LoadingStateType} from '../../../types/loading.ts';
 describe('Component: OfferReciews', () => {
   it('should render correctly', () => {
     const mockReviews = makeFakeReviews(2);
-    const {withStoreComponent} = withStore(<OfferReviews offerId={1} reviews={mockReviews}/>, {
+    const {withStoreComponent} = withStore(<OfferReviews offerId={'test'} reviews={mockReviews}/>, {
       AUTH: {authorizationStatus: AuthorizationStatus.Auth} as AuthState,
       LOADING: {isLoadingForm: false} as LoadingStateType,
     });

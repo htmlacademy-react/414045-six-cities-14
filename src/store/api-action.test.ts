@@ -142,7 +142,7 @@ describe('ApiAction', () => {
     });
 
     it('should dispatch "loadOfferAction.pending", "loadOfferAction.rejected" when server response 400', async () => {
-      const mockOfferId = 1;
+      const mockOfferId = 'test';
       mockAxiosAdapter.onGet(`${APIRoute.Offers}/${mockOfferId}`).reply(400, []);
 
       await store.dispatch(loadOfferAction(mockOfferId));
@@ -157,7 +157,7 @@ describe('ApiAction', () => {
 
   describe('load reviews', () => {
     it('should dispatch "loadReviewsAction.pending", "loadReviewsAction.fulfilled" when response code 200', async () => {
-      const mockOfferId = 23;
+      const mockOfferId = 'test';
       const mockReviews = makeFakeReviews(3);
 
       mockAxiosAdapter.onGet(`${APIRoute.Comments}/${mockOfferId}`).reply(200, mockReviews);
@@ -176,7 +176,7 @@ describe('ApiAction', () => {
     });
 
     it('should dispatch "loadReviewsAction.pending", "loadReviewsAction.rejected" when server response 400', async () => {
-      const mockOfferId = 1;
+      const mockOfferId = 'test';
       mockAxiosAdapter.onGet(`${APIRoute.Comments}/${mockOfferId}`).reply(400, []);
 
       await store.dispatch(loadReviewsAction(mockOfferId));
@@ -191,7 +191,7 @@ describe('ApiAction', () => {
 
   describe('load nearby offers', () => {
     it('should dispatch "loadNearbyOffersAction.pending", "loadNearbyOffersAction.fulfilled" when response code 200', async () => {
-      const mockOfferId = 23;
+      const mockOfferId = 'test';
       const mockOffers = makeFakeOffers(3);
 
       mockAxiosAdapter.onGet(`${APIRoute.Offers}/${mockOfferId}/nearby`).reply(200, mockOffers);
@@ -210,7 +210,7 @@ describe('ApiAction', () => {
     });
 
     it('should dispatch "loadNearbyOffersAction.pending", "loadNearbyOffersAction.rejected" when server response 400', async () => {
-      const mockOfferId = 1;
+      const mockOfferId = 'test';
       mockAxiosAdapter.onGet(`${APIRoute.Offers}/${mockOfferId}/nearby`).reply(400, []);
 
       await store.dispatch(loadNearbyOffersAction(mockOfferId));
@@ -284,7 +284,7 @@ describe('ApiAction', () => {
     });
 
     it('should dispatch "toggleFavoriteOfferAction.pending", "toggleFavoriteOfferAction.rejected" when server response 400', async () => {
-      const mockOfferId = 23;
+      const mockOfferId = 'test';
       const status = 1;
 
       mockAxiosAdapter.onPost(`${APIRoute.Favorite}/${mockOfferId}/${status}`).reply(400, []);
@@ -301,7 +301,7 @@ describe('ApiAction', () => {
 
   describe('add review', () => {
     it('should dispatch "addReviewAction.pending", "addReviewAction.fulfilled" and response include added review when response code 200', async () => {
-      const mockOfferId = 1;
+      const mockOfferId = 'test';
       const mockReview = makeFakeReview();
       const mockReviews = makeFakeReviews(3);
       const expectedReviews = [...mockReviews, mockReview];
@@ -322,7 +322,7 @@ describe('ApiAction', () => {
     });
 
     it('should dispatch "addReviewAction.pending", "addReviewAction.rejected" when server response 400', async () => {
-      const mockOfferId = 23;
+      const mockOfferId = 'test';
       const mockReview = makeFakeReview();
 
       mockAxiosAdapter.onPost(`${APIRoute.Comments}/${mockOfferId}`).reply(400, []);

@@ -2,7 +2,6 @@ import {ReactElement, useEffect, useRef} from 'react';
 import {City, MapPoint, Offer} from '../../types/offer.ts';
 import useMap from '../../hooks/use-map.tsx';
 import {Icon, LatLng, layerGroup, Marker} from 'leaflet';
-import {CityName} from '../../consts.ts';
 import {useAppSelector} from '../../hooks/hooks.ts';
 import {getActiveMapPoint} from '../../store/offer/offer-selector.ts';
 
@@ -25,20 +24,26 @@ const activeIcon = new Icon({
   iconUrl: SRC_ACTIVE_MARKER,
 });
 
-function getCityPoints(cityName: CityName, offers: Offer[]): MapPoint[] {
+function getCityPoints(offers: Offer[]): MapPoint[] {
   const points: MapPoint[] = [];
 
   offers.forEach((offer) => {
-    if (offer.city.name === cityName) {
-      points.push(offer.location);
-    }
+    points.push(offer.location);
   });
 
   return points;
 }
 
+function isLocationInOneCity(offers: Offer[]) {
+  const cities = new Set();
+
+  offers.forEach((offer) => cities.add(offer.city.name));
+
+  return cities.size <= 1;
+}
+
 export default function Map({className, city, offers}: MapProps): ReactElement {
-  const points = getCityPoints(city.name, offers);
+  const points = getCityPoints(offers);
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
   const activePoint = useAppSelector(getActiveMapPoint);
@@ -48,10 +53,11 @@ export default function Map({className, city, offers}: MapProps): ReactElement {
     if (map) {
       const {latitude, longitude, zoom} = city.location;
       const markerLayer = layerGroup().addTo(map);
+      const preparedZoom = isLocationInOneCity(offers) ? zoom : 4;
 
-      map.setView(new LatLng(latitude, longitude), zoom);
+      map.setView(new LatLng(latitude, longitude), preparedZoom);
       points.forEach((point) => {
-        const icon = defaultIcon;
+        const icon = point === activePoint ? activeIcon : defaultIcon;
         const marker = new Marker({
           lat: point.latitude,
           lng: point.longitude

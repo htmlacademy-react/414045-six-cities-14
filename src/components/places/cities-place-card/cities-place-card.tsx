@@ -1,4 +1,4 @@
-import {Offer} from '../../../types/offer.ts';
+import {Offer, OfferId} from '../../../types/offer.ts';
 import PlaceCard from '../place-card/place-card.tsx';
 import {setActiveMapPoint} from '../../../store/offer/offer-slice.ts';
 import {useAppDispatch} from '../../../hooks/hooks.ts';
@@ -13,7 +13,7 @@ type CitiesPlaceCardProps = {
 function CitiesPlaceCard({offer, offers}: CitiesPlaceCardProps): ReactElement {
   const dispatch = useAppDispatch();
 
-  const mouseOverHandler = (offerId: number) => {
+  const mouseOverHandler = (offerId: OfferId) => {
     const mapPoint = getOfferMapPoint(offers, offerId);
     dispatch(setActiveMapPoint({activeMapPoint: mapPoint}));
   };

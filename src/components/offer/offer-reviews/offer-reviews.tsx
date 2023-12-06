@@ -6,9 +6,10 @@ import {useAppSelector} from '../../../hooks/hooks.ts';
 import {AuthorizationStatus} from '../../../consts.ts';
 import {getAuthorizationStatus} from '../../../store/auth/auth-selector.ts';
 import {sortOfferReviews} from '../../../services/offer-service.ts';
+import {OfferId} from '../../../types/offer.ts';
 
 type OfferReviewsProps = {
-  offerId: number;
+  offerId: OfferId;
   reviews: Review[];
 }
 

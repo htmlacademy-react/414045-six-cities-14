@@ -1,5 +1,5 @@
-import {ActiveMapPoint, City, Favorites as FavoritesType, Offer} from '../types/offer.ts';
-import {SortOption} from '../consts.ts';
+import {ActiveMapPoint, City, Favorites as FavoritesType, Offer, OfferId} from '../types/offer.ts';
+import {CITIES, SortOption} from '../consts.ts';
 import {Review} from '../types/review.ts';
 
 function getLocationOffers(city: City, offers: Offer[]) {
@@ -38,7 +38,7 @@ function sortOfferReviews(reviews: Review[]) {
   return [...reviews].sort((a, b) => new Date(a.date) <= new Date(b.date) ? 1 : -1);
 }
 
-function getOfferMapPoint(offers: Offer[], offerId: number): ActiveMapPoint {
+function getOfferMapPoint(offers: Offer[], offerId: OfferId): ActiveMapPoint {
   return offers.find((offer: Offer) => offer.id === offerId)?.location;
 }
 
@@ -61,4 +61,11 @@ function prepareFavoritesByCity(offers: Offer[]): FavoritesType[] {
   return favoritesByCity;
 }
 
-export {getLocationOffers, sortOffers, getOfferMapPoint, sortOfferReviews, prepareFavoritesByCity};
+function getRandomCity(): City {
+  const cities = CITIES;
+  const randomCityKey = Number(Object.keys(cities)[Math.floor(Math.random() * Object.keys(cities).length)]);
+
+  return cities[randomCityKey];
+}
+
+export {getLocationOffers, sortOffers, getOfferMapPoint, sortOfferReviews, prepareFavoritesByCity, getRandomCity};

@@ -54,7 +54,7 @@ export const makeFakeUser = ():User => ({
 });
 
 export const makeFakeOffer = ():Offer => ({
-  id: datatype.number(100),
+  id: datatype.string(20),
   city: makeFakeCity(),
   description: lorem.paragraph(1),
   goods: makeFakeGoods(datatype.number(5)),

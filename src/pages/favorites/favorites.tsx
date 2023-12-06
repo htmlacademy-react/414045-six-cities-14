@@ -10,9 +10,10 @@ import {prepareFavoritesByCity} from '../../services/offer-service.ts';
 function Favorites(): ReactElement {
   const offers = useAppSelector(getFavoriteOffers);
   const favoritesByCity = prepareFavoritesByCity(offers);
+  const pageClassNames = offers.length === 0 ? 'page page--favorites-empty' : 'page';
 
   return (
-    <Layout>
+    <Layout pageClassNames={pageClassNames}>
       <Fragment>
         {favoritesByCity.length ? <FavoritesList favoritesByCity={favoritesByCity}/> : <FavoritesEmpty/>}
         <Footer/>
