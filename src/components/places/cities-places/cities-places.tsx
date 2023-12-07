@@ -20,7 +20,7 @@ function CitiesPlaces({offers, city}: CitiesPlacesProps): ReactElement {
     setSortedOffers(offers);
   }, [offers]);
 
-  const onChangeOfferOptionHandler = (evt: SyntheticEvent) => {
+  const handleChangeOfferOption = (evt: SyntheticEvent) => {
     if (evt.target instanceof HTMLElement) {
       const optionSign: SortOption = evt.target.getAttribute('id') as SortOption ?? DEFAULT_SORTING_OPTION;
       setCurrentSortingOption(optionSign);
@@ -43,7 +43,7 @@ function CitiesPlaces({offers, city}: CitiesPlacesProps): ReactElement {
               <use xlinkHref="#icon-arrow-select"></use>
             </svg>
           </span>
-          <PlacesOptions isOpen={isOpenSortPopup} onChangeOptionHandler={onChangeOfferOptionHandler}/>
+          <PlacesOptions isOpen={isOpenSortPopup} handleChangeOption={handleChangeOfferOption}/>
         </form>
         <PlaceCardList offers={sortedOffers}/>
       </section>

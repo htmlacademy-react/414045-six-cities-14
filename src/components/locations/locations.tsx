@@ -7,7 +7,7 @@ import {setCity} from '../../store/offer/offer-slice.ts';
 import {getCity} from '../../store/offer/offer-selector.ts';
 import classNames from 'classnames';
 
-function getOnChangeCityHandler(city: City, dispatch: AppDispatch) {
+function handleChangeCity(city: City, dispatch: AppDispatch) {
   return (evt: SyntheticEvent) => {
     evt.preventDefault();
     dispatch(setCity({city: city}));
@@ -24,7 +24,7 @@ function Locations(): ReactElement {
       <ul className="locations__list tabs__list">
         {CITIES.map((city) => (
           <li key={city.name} className="locations__item">
-            <a className={classNames('locations__item-link', 'tabs__item', {'tabs__item--active': isCurrentCity(city)})} href="#" onClick={getOnChangeCityHandler(city, dispatch)}>
+            <a className={classNames('locations__item-link', 'tabs__item', {'tabs__item--active': isCurrentCity(city)})} href="#" onClick={handleChangeCity(city, dispatch)}>
               <span>{city.name}</span>
             </a>
           </li>)
