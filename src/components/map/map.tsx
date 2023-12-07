@@ -72,7 +72,7 @@ export default function Map({className, city, offers}: MapProps): ReactElement {
         markers.current = [];
       };
     }
-  }, [map, city, points]);
+  }, [map, city, points, offers, activePoint]);
 
   useEffect(() => {
     if (map) {

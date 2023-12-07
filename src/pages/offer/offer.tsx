@@ -68,7 +68,7 @@ function Offer(): ReactElement {
     return isLoading ? <Spinner/> : <NotFound/>;
   }
 
-  const onClickFavoriteButton = () => {
+  const handleClickFavoriteButton = () => {
     if (authStatus !== AuthorizationStatus.Auth) {
       dispatch(redirectToRoute(AppRoute.Login));
     }
@@ -90,7 +90,7 @@ function Offer(): ReactElement {
                   <h1 className="offer__name">
                     {offer.title}
                   </h1>
-                  <button onClick={onClickFavoriteButton} className={classNames('offer__bookmark-button', 'button', {'offer__bookmark-button--active': isFavorite})} type="button">
+                  <button onClick={handleClickFavoriteButton} className={classNames('offer__bookmark-button', 'button', {'offer__bookmark-button--active': isFavorite})} type="button">
                     <svg className="offer__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>

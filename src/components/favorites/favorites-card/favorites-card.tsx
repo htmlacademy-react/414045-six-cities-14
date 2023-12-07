@@ -15,7 +15,7 @@ function FavoritesCard({offer}:FavoritesCardProps):ReactElement {
   const dispatch = useAppDispatch();
   const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
 
-  const onClickFavoriteButton = () => {
+  const handleClickFavoriteButton = () => {
     setIsFavorite(!isFavorite);
     dispatch(toggleFavoriteOfferAction({offerId: offer.id, status: Number(!isFavorite)}));
   };
@@ -38,7 +38,7 @@ function FavoritesCard({offer}:FavoritesCardProps):ReactElement {
             'place-card__bookmark-button',
             'button',
             {'place-card__bookmark-button--active': isFavorite}
-          )} type="button" onClick={onClickFavoriteButton}
+          )} type="button" onClick={handleClickFavoriteButton}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>

@@ -19,7 +19,7 @@ function PlaceCard({offer}: PlaceCardProps): ReactElement {
   const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
   const authStatus = useAppSelector(getAuthorizationStatus);
 
-  const onClickFavoriteButton = () => {
+  const handleClickFavoriteButton = () => {
     if (authStatus !== AuthorizationStatus.Auth) {
       dispatch(redirectToRoute(AppRoute.Login));
     }
@@ -46,7 +46,7 @@ function PlaceCard({offer}: PlaceCardProps): ReactElement {
             'place-card__bookmark-button',
             'button',
             {'place-card__bookmark-button--active': isFavorite}
-          )} type="button" onClick={onClickFavoriteButton}
+          )} type="button" onClick={handleClickFavoriteButton}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>

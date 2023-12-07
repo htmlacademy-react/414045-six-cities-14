@@ -8,7 +8,7 @@ describe('Component: PlacesOptions', () => {
     const optionTestId = 'places_option';
     const mockHandler = vi.fn();
 
-    render(<PlacesOptions isOpen onChangeOptionHandler={mockHandler}/>);
+    render(<PlacesOptions isOpen handleChangeOption={mockHandler}/>);
 
     expect(screen.getByTestId(placesOptionContainerTestId)).toBeInTheDocument();
     expect(screen.getByTestId(placesOptionContainerTestId)).toHaveClass('places__options--opened');
@@ -19,7 +19,7 @@ describe('Component: PlacesOptions', () => {
     const placesOptionContainerTestId = 'places_options';
     const mockHandler = vi.fn();
 
-    render(<PlacesOptions isOpen={false} onChangeOptionHandler={mockHandler}/>);
+    render(<PlacesOptions isOpen={false} handleChangeOption={mockHandler}/>);
 
     expect(screen.getByTestId(placesOptionContainerTestId)).not.toHaveClass('places__options--opened');
   });

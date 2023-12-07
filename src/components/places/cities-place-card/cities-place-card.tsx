@@ -13,20 +13,20 @@ type CitiesPlaceCardProps = {
 function CitiesPlaceCard({offer, offers}: CitiesPlaceCardProps): ReactElement {
   const dispatch = useAppDispatch();
 
-  const mouseOverHandler = (offerId: OfferId) => {
+  const handleMouseOver = (offerId: OfferId) => {
     const mapPoint = getOfferMapPoint(offers, offerId);
     dispatch(setActiveMapPoint({activeMapPoint: mapPoint}));
   };
 
-  const mouseOutHandler = () => {
+  const handleMouseOut = () => {
     dispatch(setActiveMapPoint({activeMapPoint: undefined}));
   };
 
   return (
     <article className="cities__card place-card" onMouseEnter={() => {
-      mouseOverHandler(offer.id);
+      handleMouseOver(offer.id);
     }}
-    onMouseLeave={mouseOutHandler}
+    onMouseLeave={handleMouseOut}
     data-testid="cities-place-card"
     >
       <PlaceCard offer={offer}/>
