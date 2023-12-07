@@ -10,6 +10,8 @@ import 'leaflet/dist/leaflet.css';
 const SRC_MARKER_DEFAULT = 'img/pin.svg';
 const SRC_ACTIVE_MARKER = 'img/pin-active.svg';
 
+const DEFAULT_ZOOM = 13;
+
 type MapProps = {
   className: string;
   offers: Offer[];
@@ -51,9 +53,9 @@ export default function Map({className, city, offers}: MapProps): ReactElement {
 
   useEffect(() => {
     if (map) {
-      const {latitude, longitude, zoom} = city.location;
+      const {latitude, longitude} = city.location;
       const markerLayer = layerGroup().addTo(map);
-      const preparedZoom = isLocationInOneCity(offers) ? zoom : 4;
+      const preparedZoom = isLocationInOneCity(offers) ? DEFAULT_ZOOM : 4;
 
       map.setView(new LatLng(latitude, longitude), preparedZoom);
       points.forEach((point) => {

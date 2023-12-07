@@ -18,6 +18,7 @@ function Login(): ReactElement {
   const [isPasswordError, setIsPasswordError] = useState(false);
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(getAuthorizationStatus);
+  const [location,] = useState(getRandomCity());
 
   useEffect(() => {
     if (authStatus === AuthorizationStatus.Auth) {
@@ -49,8 +50,6 @@ function Login(): ReactElement {
     evt.preventDefault();
     dispatch(loginAction(formData));
   };
-
-  const location = getRandomCity();
 
   const handleCityButton = () => {
     dispatch(setCity({city: location}));
